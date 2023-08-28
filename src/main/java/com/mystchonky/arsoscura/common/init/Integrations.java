@@ -2,37 +2,31 @@ package com.mystchonky.arsoscura.common.init;
 
 import com.hollingsworth.arsnouveau.api.ArsNouveauAPI;
 import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
+import com.hollingsworth.arsnouveau.api.mob_jar.JarBehaviorRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
-import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
-import net.minecraftforge.fml.ModList;
+import com.klikli_dev.occultism.registry.OccultismEntities;
+import com.mystchonky.arsoscura.common.mob_jar.SpiritBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArsNouveauIntegration {
+public class Integrations {
 
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>();
     public static List<AbstractFamiliarHolder> registeredFamiliars = new ArrayList<>();
 
     public static void init() {
         registerGlyphs();
-        registerFamiliars();
     }
 
     public static void postInit() {
         registerSounds();
+        registerJarBehaviours();
     }
 
     public static void registerGlyphs() {
-        if (ModList.get().isLoaded("bloodmagic"))
-            BloodMagicIntegration.registerGlyphs(ArsNouveauIntegration::registerSpellPart);
     }
 
-    public static void registerFamiliars() {
-        if (ModList.get().isLoaded("occultism"))
-            OccultismIntegration.registerFamiliars(ArsNouveauIntegration::registerFamiliars);
-    }
 
     public static void registerSounds() {
     }
@@ -42,9 +36,16 @@ public class ArsNouveauIntegration {
         registeredSpells.add(spellPart);
     }
 
-    public static void registerFamiliars(AbstractFamiliarHolder familiarHolder) {
+    public static void registerFamiliarHolders(AbstractFamiliarHolder familiarHolder) {
         ArsNouveauAPI.getInstance().registerFamiliar(familiarHolder);
         registeredFamiliars.add(familiarHolder);
+    }
+
+    public static void registerJarBehaviours() {
+        JarBehaviorRegistry.register(OccultismEntities.FOLIOT.get(), new SpiritBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.DJINNI.get(), new SpiritBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.AFRIT.get(), new SpiritBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.MARID.get(), new SpiritBehaviour<>());
     }
 
 }

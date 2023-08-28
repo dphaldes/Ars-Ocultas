@@ -107,11 +107,6 @@ repositories {
         url = "https://maven.theillusivec4.top/"
     }
     maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
         // location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
@@ -144,8 +139,6 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
     implementation fg.deobf("com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}")
-    implementation fg.deobf("maven.modrinth:blood-magic:${mc_version}-${bm_version}")
-    implementation fg.deobf("curse.maven:ars-omega-597007:4623885")
     implementation fg.deobf("maven.modrinth:occultism:${mc_version}-${occultism_version}")
     implementation fg.deobf("maven.modrinth:smartbrainlib:R8SV4kEf")
 

@@ -1,4 +1,4 @@
-package com.mystchonky.arsoscura.integration.occultism.familiars;
+package com.mystchonky.arsoscura.common.familiars;
 
 public class FamiliarLibrary {
     public static final String FAMILIAR_DRAGON = appendFamiliar("dragon");

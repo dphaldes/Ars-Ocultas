@@ -15,15 +15,4 @@ public class EventHandler {
         }
     }
 
-//    @SubscribeEvent
-//    public static void updateAugmentsforMimic(FMLLoadCompleteEvent event) {
-//        ArsNouveauAPI.getInstance()
-//                .getGlyphItemMap()
-//                .values()
-//                .stream()
-//                .filter(spell -> spell instanceof AbstractAugment)
-//                .forEach(spell -> {
-//                    ((AbstractAugment) spell).getCompatibleAugments().add(AugmentMimic.INSTANCE);
-//                });
-//    }
 }

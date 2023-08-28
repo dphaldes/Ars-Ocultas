@@ -1,11 +1,11 @@
-package com.mystchonky.arsoscura.integration.occultism.familiars;
+package com.mystchonky.arsoscura.common.familiars;
 
 import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
 import com.hollingsworth.arsnouveau.api.familiar.IFamiliar;
 import com.klikli_dev.occultism.common.entity.familiar.DragonFamiliarEntity;
 import com.klikli_dev.occultism.registry.OccultismEntities;
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.integration.occultism.entity.FamiliarDragon;
+import com.mystchonky.arsoscura.common.entity.FamiliarDragon;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 

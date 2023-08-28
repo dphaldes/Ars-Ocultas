@@ -13,7 +13,7 @@ import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.patchouli.*;
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.common.init.ArsNouveauIntegration;
+import com.mystchonky.arsoscura.common.init.Integrations;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.DataProvider;
@@ -142,7 +142,7 @@ public class ArsProviders {
         @Override
         public void run(CachedOutput cache) throws IOException {
 
-            for (AbstractSpellPart spell : ArsNouveauIntegration.registeredSpells) {
+            for (AbstractSpellPart spell : Integrations.registeredSpells) {
                 addGlyphPage(spell);
             }
 

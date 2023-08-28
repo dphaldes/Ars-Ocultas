@@ -5,12 +5,10 @@ import com.hollingsworth.arsnouveau.setup.IProxy;
 import com.hollingsworth.arsnouveau.setup.ItemsRegistry;
 import com.hollingsworth.arsnouveau.setup.ServerProxy;
 import com.mystchonky.arsoscura.common.config.BaseConfig;
-import com.mystchonky.arsoscura.common.init.ArsNouveauIntegration;
 import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
 import com.mystchonky.arsoscura.common.init.ArsOscuraLang;
+import com.mystchonky.arsoscura.common.init.Integrations;
 import com.mystchonky.arsoscura.common.network.Networking;
-import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
-import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,7 +19,6 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -69,13 +66,7 @@ public class ArsOscura {
         ctx.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
         ArsOscuraItems.register();
-        ArsNouveauIntegration.init();
-
-        if (ModList.get().isLoaded("bloodmagic"))
-            BloodMagicIntegration.init();
-        if (ModList.get().isLoaded("occultism"))
-            OccultismIntegration.init();
-
+        Integrations.init();
         ArsOscuraLang.register();
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -90,21 +81,15 @@ public class ArsOscura {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        ArsNouveauIntegration.postInit();
+        Integrations.postInit();
         Networking.registerMessages();
-        if (ModList.get().isLoaded("occultism"))
-            OccultismIntegration.postInit();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
-
     }
 
-    // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
-        // do something when the server starts
-        LOGGER.info("HELLO from server starting");
     }
 
 }

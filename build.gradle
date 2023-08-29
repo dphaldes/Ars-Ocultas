@@ -8,7 +8,7 @@ plugins {
 }
 // Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
-version = mod_version
+version = "${mc_version}-${mod_version}"
 group = mod_group_id
 
 base {

@@ -14,11 +14,11 @@ license = "GNU Lesser General Public License v3.0"
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
-modId = "ars_oscura" #mandatory
+modId = "ars_ocultas" #mandatory
 # The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
 version = "${file.jarVersion}" #mandatory
 # A display name for the mod
-displayName = "Ars Oscura" #mandatory
+displayName = "Ars Ocultas" #mandatory
 # A URL to query for updates for this mod. See the JSON update specification <here>
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
@@ -26,15 +26,15 @@ displayName = "Ars Oscura" #mandatory
 # A file name (in the root of the mod JAR) containing a logo for display
 #logoFile="examplemod.png" #optional
 # A text field displayed in the mod UI
-credits = "Thanks to the original author of Tome of Blood SadieLuna" #optional
+#credits = "" #optional
 # A text field displayed in the mod UI
 authors = "mystchonky" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description = '''
-Ars Nouveau tainted by Blood Magic
+Ars Nouveau integration with Occultism
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.ars_oscura]] #optional
+[[dependencies.ars_ocultas]] #optional
 # the modid of the dependency
 modId = "forge" #mandatory
 # Does this dependency have to exist - if not, ordering below must be specified
@@ -46,37 +46,23 @@ ordering = "NONE"
 # Side this dependency is applied on - BOTH, CLIENT or SERVER
 side = "BOTH"
 # Here's another dependency
-[[dependencies.ars_oscura]]
+[[dependencies.ars_ocultas]]
 modId = "patchouli"
 mandatory = true
 versionRange = "[1.18.1-61,)"
 ordering = "AFTER"
 side = "BOTH"
 
-[[dependencies.ars_oscura]]
-modId = "curios"
-mandatory = true
-versionRange = "[1.18.1-5.0.3.0,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.ars_oscura]]
+[[dependencies.ars_ocultas]]
 modId = "ars_nouveau"
 mandatory = true
 versionRange = "[2.5.0,)"
 ordering = "AFTER"
 side = "BOTH"
 
-[[dependencies.ars_oscura]]
-modId = "bloodmagic"
-mandatory = false
-versionRange = "[1.19.2-3.2.6-40,)"
-ordering = "AFTER"
-side = "BOTH"
-
-[[dependencies.ars_oscura]]
+[[dependencies.ars_ocultas]]
 modId = "occultism"
-mandatory = false
+mandatory = true
 versionRange = "[1.19.2-1.82.0,)"
 ordering = "AFTER"
 side = "BOTH"

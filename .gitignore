@@ -26,3 +26,4 @@ classes
 forge*changelog.txt
 /lib/
 /src/generated/resources/.cache/
+run-data/

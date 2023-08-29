@@ -53,9 +53,9 @@ jobs:
       - name: Upload to Mod Platforms
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-          modrinth-id: sH3rOUEZ
+          modrinth-id: Tsw8vbks
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
-          curseforge-id: 895304
+          curseforge-id: 907843
           curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
 
           files: |

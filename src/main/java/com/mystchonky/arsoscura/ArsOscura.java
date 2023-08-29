@@ -8,7 +8,6 @@ import com.mystchonky.arsoscura.common.init.ArsNouveauIntegration;
 import com.mystchonky.arsoscura.common.init.ArsOscuraItems;
 import com.mystchonky.arsoscura.common.init.ArsOscuraLang;
 import com.mystchonky.arsoscura.common.network.Networking;
-import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
 import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
@@ -40,7 +39,6 @@ public class ArsOscura {
 
     private static final Lazy<Registrate> REGISTRATE = Lazy.of(() -> Registrate.create(MODID));
     public static final Logger LOGGER = LogManager.getLogger();
-    public static final boolean isBloodMagicLoaded = ModList.get().isLoaded("bloodmagic");
     public static final boolean isOccultismLoaded = ModList.get().isLoaded("occultism");
 
     public static Registrate registrate() {
@@ -63,8 +61,6 @@ public class ArsOscura {
         ArsOscuraItems.register();
         ArsNouveauIntegration.init();
 
-        if (isBloodMagicLoaded)
-            BloodMagicIntegration.init();
         if (isOccultismLoaded)
             OccultismIntegration.init();
 

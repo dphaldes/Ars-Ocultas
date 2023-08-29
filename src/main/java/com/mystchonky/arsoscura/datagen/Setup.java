@@ -20,10 +20,6 @@ public class Setup {
 //        gen.addProvider(event.includeServer(), new ArsProviders.GlyphProvider(gen));
 //        gen.addProvider(event.includeServer(), new ArsProviders.EnchantingAppProvider(gen));
 
-        gen.addProvider(event.includeServer(), new BloodMagicProviders.AltarProvider(output));
-        gen.addProvider(event.includeServer(), new BloodMagicProviders.AlchemyTableProvider(output));
-        gen.addProvider(event.includeServer(), new BloodMagicProviders.GlyphProvider(gen));
-
         gen.addProvider(event.includeServer(), new ArsProviders.PatchouliProvider(gen));
 
         gen.addProvider(event.includeClient(), new GlyphItemModelProvider(output, event.getExistingFileHelper()));

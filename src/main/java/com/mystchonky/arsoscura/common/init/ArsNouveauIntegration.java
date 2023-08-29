@@ -5,7 +5,6 @@ import com.hollingsworth.arsnouveau.api.registry.FamiliarRegistry;
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.mystchonky.arsoscura.ArsOscura;
-import com.mystchonky.arsoscura.integration.bloodmagic.BloodMagicIntegration;
 import com.mystchonky.arsoscura.integration.occultism.OccultismIntegration;
 import net.minecraftforge.fml.ModList;
 
@@ -30,8 +29,6 @@ public class ArsNouveauIntegration {
     }
 
     public static void registerGlyphs() {
-        if (ArsOscura.isBloodMagicLoaded)
-            BloodMagicIntegration.registerGlyphs(ArsNouveauIntegration::registerSpellPart);
     }
 
     public static void registerFamiliars() {
@@ -53,8 +50,6 @@ public class ArsNouveauIntegration {
     }
 
     public static void registerPerkProviders() {
-        if (ArsOscura.isBloodMagicLoaded)
-            BloodMagicIntegration.registerPerkProviders();
     }
 
 }

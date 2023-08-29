@@ -4,7 +4,6 @@ import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
 import com.hollingsworth.arsnouveau.api.registry.FamiliarRegistry;
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.mystchonky.arsocultas.ArsOcultas;
 import com.mystchonky.arsocultas.integration.occultism.OccultismIntegration;
 
 import java.util.ArrayList;
@@ -31,7 +30,6 @@ public class ArsNouveauIntegration {
     }
 
     public static void registerFamiliars() {
-        if (ArsOcultas.isOccultismLoaded)
             OccultismIntegration.registerFamiliars(ArsNouveauIntegration::registerFamiliars);
     }
 

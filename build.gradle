@@ -130,7 +130,6 @@ dependencies {
     implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:0.2.0-beta.8"))
     implementation("com.github.llamalad7.mixinextras:mixinextras-forge:0.2.0-beta.8")
 
-////    implementation fg.deobf("curse.maven:ars-omega-597007:4623885")
 
     implementation fg.deobf("maven.modrinth:occultism:${mc_version}-${occultism_version}")
     implementation fg.deobf("maven.modrinth:smartbrainlib:${smartbrainlib}")

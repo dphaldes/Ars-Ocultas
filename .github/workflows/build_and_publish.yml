@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: 
+    permissions:
       contents: write
     steps:
       - name: Checkout
@@ -21,7 +21,7 @@ jobs:
       - name: Get version from tag
         id: tag_name
         run: |
-            echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
+          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
         shell: bash
       - name: Read property from gradle.properties
         id: read_property
@@ -53,9 +53,9 @@ jobs:
       - name: Upload to Mod Platforms
         uses: Kir-Antipov/mc-publish@v3.3
         with:
-          modrinth-id: sH3rOUEZ
+          modrinth-id: Tsw8vbks
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
-          curseforge-id: 895304
+          curseforge-id: 907843
           curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
 
           files: |
@@ -70,5 +70,4 @@ jobs:
           dependencies: |
             forge(required)
             ars-nouveau(required)
-            blood-magic(optional)
-            occultism(optional)
+            occultism(required)

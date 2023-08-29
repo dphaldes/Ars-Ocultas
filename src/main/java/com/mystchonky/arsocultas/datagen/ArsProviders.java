@@ -8,7 +8,7 @@ import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.GlyphRecipeProvider;
 import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.mystchonky.arsocultas.ArsOcultas;
-import com.mystchonky.arsocultas.common.init.ArsNouveauIntegration;
+import com.mystchonky.arsocultas.common.init.Integrations;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.Item;
@@ -126,7 +126,7 @@ public class ArsProviders {
 
         @Override
         public void addEntries() {
-            for (AbstractSpellPart spell : ArsNouveauIntegration.registeredSpells) {
+            for (AbstractSpellPart spell : Integrations.registeredSpells) {
                 addGlyphPage(spell);
             }
         }

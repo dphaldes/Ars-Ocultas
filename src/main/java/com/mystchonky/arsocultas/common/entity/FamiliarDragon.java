@@ -1,4 +1,4 @@
-package com.mystchonky.arsocultas.integration.occultism.entity;
+package com.mystchonky.arsocultas.common.entity;
 
 import com.hollingsworth.arsnouveau.api.familiar.IFamiliar;
 import com.klikli_dev.occultism.common.entity.familiar.DragonFamiliarEntity;

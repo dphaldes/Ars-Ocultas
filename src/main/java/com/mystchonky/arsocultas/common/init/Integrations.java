@@ -1,15 +1,17 @@
 package com.mystchonky.arsocultas.common.init;
 
 import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
+import com.hollingsworth.arsnouveau.api.mob_jar.JarBehaviorRegistry;
 import com.hollingsworth.arsnouveau.api.registry.FamiliarRegistry;
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
-import com.mystchonky.arsocultas.integration.occultism.OccultismIntegration;
+import com.klikli_dev.occultism.registry.OccultismEntities;
+import com.mystchonky.arsocultas.common.mob_jar.SpiritBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArsNouveauIntegration {
+public class Integrations {
 
 
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>();
@@ -18,20 +20,16 @@ public class ArsNouveauIntegration {
     public static void init() {
 
         registerGlyphs();
-        registerFamiliars();
     }
 
     public static void postInit() {
         registerSounds();
-        registerPerkProviders();
+        registerJarBehaviours();
     }
 
     public static void registerGlyphs() {
     }
 
-    public static void registerFamiliars() {
-            OccultismIntegration.registerFamiliars(ArsNouveauIntegration::registerFamiliars);
-    }
 
     public static void registerSounds() {
     }
@@ -46,7 +44,11 @@ public class ArsNouveauIntegration {
         registeredFamiliars.add(familiarHolder);
     }
 
-    public static void registerPerkProviders() {
+    public static void registerJarBehaviours() {
+        JarBehaviorRegistry.register(OccultismEntities.FOLIOT.get(), new SpiritBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.DJINNI.get(), new SpiritBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.AFRIT.get(), new SpiritBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.MARID.get(), new SpiritBehaviour<>());
     }
 
 }

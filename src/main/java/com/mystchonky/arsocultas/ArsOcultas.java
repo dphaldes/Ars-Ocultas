@@ -4,11 +4,10 @@ import com.hollingsworth.arsnouveau.setup.proxy.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.IProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.ServerProxy;
 import com.mystchonky.arsocultas.common.config.BaseConfig;
-import com.mystchonky.arsocultas.common.init.ArsNouveauIntegration;
 import com.mystchonky.arsocultas.common.init.ArsOcultasItems;
 import com.mystchonky.arsocultas.common.init.ArsOcultasLang;
+import com.mystchonky.arsocultas.common.init.Integrations;
 import com.mystchonky.arsocultas.common.network.Networking;
-import com.mystchonky.arsocultas.integration.occultism.OccultismIntegration;
 import com.tterrag.registrate.Registrate;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
@@ -57,9 +56,7 @@ public class ArsOcultas {
         ctx.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
         ArsOcultasItems.register();
-        ArsNouveauIntegration.init();
-
-        OccultismIntegration.init();
+        Integrations.init();
         ArsOcultasLang.register();
 
         IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -74,9 +71,8 @@ public class ArsOcultas {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        ArsNouveauIntegration.postInit();
+        Integrations.postInit();
         Networking.registerMessages();
-            OccultismIntegration.postInit();
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

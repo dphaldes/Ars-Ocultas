@@ -8,7 +8,7 @@ public class ArsOcultasLang {
     private static final Registrate REGISTRATE = ArsOcultas.registrate();
 
     public static void register() {
-        ArsNouveauIntegration.registeredSpells.forEach(spell -> {
+        Integrations.registeredSpells.forEach(spell -> {
             REGISTRATE.addRawLang(ArsOcultas.MODID + ".glyph_name." + spell.getRegistryName().getPath(), spell.getName());
             REGISTRATE.addRawLang(ArsOcultas.MODID + ".glyph_desc." + spell.getRegistryName().getPath(), spell.getBookDescription());
         });

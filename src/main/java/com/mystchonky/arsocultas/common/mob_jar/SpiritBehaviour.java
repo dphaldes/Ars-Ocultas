@@ -1,4 +1,4 @@
-package com.mystchonky.arsocultas.integration.occultism.mob_jar;
+package com.mystchonky.arsocultas.common.mob_jar;
 
 import com.hollingsworth.arsnouveau.api.mob_jar.JarBehavior;
 import com.hollingsworth.arsnouveau.common.block.tile.MobJarTile;

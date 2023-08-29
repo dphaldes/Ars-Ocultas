@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "ars_oscura:item/glyph_sentient_harm"
-  }
-}

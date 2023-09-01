@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.1] - Unreleased
+
+### Changed
+
+- Switched back to Forge and use older version of Ars till NeoForge is ready.
+
 ## [1.0.0] - 2023-08-29
 
 Port to 1.20.x and build for NeoForge.

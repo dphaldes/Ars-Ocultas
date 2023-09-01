@@ -63,7 +63,7 @@ side = "BOTH"
 [[dependencies.ars_ocultas]]
 modId = "ars_nouveau"
 mandatory = true
-versionRange = "[4.3.0,)"
+versionRange = "[4.2.0,)"
 ordering = "AFTER"
 side = "BOTH"
 

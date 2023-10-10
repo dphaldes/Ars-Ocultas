@@ -1,4 +1,4 @@
-package com.mystchonky.arsocultas.datagen;
+package com.mystchonky.arsocultas.datagen.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

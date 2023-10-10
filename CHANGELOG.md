@@ -1,6 +1,13 @@
 # Changelog
 
-## [1.0.1] - Unreleased
+## [1.1.0] - Unreleased
+
+### Added
+
+- Added Patchouli documentation
+- Added transmutation recipes
+
+## [1.0.1] - 2023-09-02
 
 ### Changed
 

@@ -1,0 +1,6 @@
+{
+  "name": "Ars Ocultas",
+  "description": "Occultism integration for Ars Nouveau",
+  "icon": "occultism:ritual_dummy/custom_ritual",
+  "sortnum": 1000
+}

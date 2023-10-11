@@ -6,6 +6,7 @@
 
 - Added Patchouli documentation
 - Added transmutation recipes
+- Added alternate recipe of Spirit Attuned Gems
 
 ### Changed
 

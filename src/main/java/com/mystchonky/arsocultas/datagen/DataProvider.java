@@ -1,6 +1,7 @@
 package com.mystchonky.arsocultas.datagen;
 
 import com.mystchonky.arsocultas.ArsOcultas;
+import com.mystchonky.arsocultas.datagen.recipe.EnchantingAppProvider;
 import com.mystchonky.arsocultas.datagen.recipe.ImbuementProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -18,8 +19,8 @@ public class DataProvider {
         PackOutput output = gen.getPackOutput();
 
         gen.addProvider(event.includeServer(), new ImbuementProvider(gen));
+        gen.addProvider(event.includeServer(), new EnchantingAppProvider(gen));
 //        gen.addProvider(event.includeServer(), new ArsProviders.GlyphProvider(gen));
-//        gen.addProvider(event.includeServer(), new ArsProviders.EnchantingAppProvider(gen));
 
         gen.addProvider(event.includeServer(), new PatchouliProvider(gen));
 

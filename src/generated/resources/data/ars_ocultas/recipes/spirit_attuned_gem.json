@@ -1,0 +1,24 @@
+{
+  "type": "ars_nouveau:enchanting_apparatus",
+  "keepNbtOfReagent": false,
+  "output": {
+    "item": "occultism:spirit_attuned_gem"
+  },
+  "pedestalItems": [
+    {
+      "item": "ars_nouveau:conjuration_essence"
+    },
+    {
+      "item": "ars_nouveau:manipulation_essence"
+    },
+    {
+      "item": "occultism:datura"
+    }
+  ],
+  "reagent": [
+    {
+      "item": "ars_nouveau:source_gem"
+    }
+  ],
+  "sourceCost": 500
+}

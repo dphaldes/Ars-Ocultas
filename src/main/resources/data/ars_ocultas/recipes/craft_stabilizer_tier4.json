@@ -1,0 +1,38 @@
+{
+  "type": "occultism:ritual",
+  "ritual_type": "occultism:craft",
+  "activation_item": {
+    "item": "occultism:book_of_binding_bound_marid"
+  },
+  "pentacle_id": "occultism:craft_marid",
+  "duration": 240,
+  "ritual_dummy": {
+    "item": "occultism:ritual_dummy/craft_stabilizer_tier4"
+  },
+  "ingredients": [
+    {
+      "item": "occultism:storage_stabilizer_tier3"
+    },
+    {
+      "tag": "forge:storage_blocks/iesnium"
+    },
+    {
+      "item": "minecraft:ender_eye"
+    },
+    {
+      "item": "occultism:spirit_attuned_crystal"
+    },
+    {
+      "item": "minecraft:end_rod"
+    },
+    {
+      "item": "minecraft:shulker_shell"
+    },
+    {
+      "item": "minecraft:dragon_breath"
+    }
+  ],
+  "result": {
+    "item": "occultism:storage_stabilizer_tier4"
+  }
+}

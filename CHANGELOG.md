@@ -1,12 +1,13 @@
 # Changelog
 
-## [1.1.0] - Unreleased
+## [1.1.0] - 2023-10-11
 
 ### Added
 
 - Added Patchouli documentation
 - Added transmutation recipes
-- Added alternate recipe of Spirit Attuned Gems
+- Added alternate recipe for Spirit Attuned Gems
+- Added alternate recipe for Tier 4 stabilizer
 
 ### Changed
 

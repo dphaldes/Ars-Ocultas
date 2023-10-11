@@ -7,6 +7,10 @@
 - Added Patchouli documentation
 - Added transmutation recipes
 
+### Changed
+
+- Build against NeoForge and bump minimum version of Ars Nouveau.
+
 ## [1.0.1] - 2023-09-02
 
 ### Changed

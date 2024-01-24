@@ -118,9 +118,9 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
 
         SpiritJob currentJob = spirit.getJob().orElse(null);
         if (currentJob instanceof MenuProvider jobMenuProvider)
-            menuProvider = new MenuProviderWrapper<>(jobMenuProvider, spirit);
+            menuProvider = new SpiritMenuWrapper<>(jobMenuProvider, spirit);
         else
-            menuProvider = new MenuProviderWrapper<>(spirit, spirit);
+            menuProvider = new SpiritMenuWrapper<>(spirit, spirit);
 
         NetworkHooks.openScreen((ServerPlayer) playerEntity, menuProvider, (buf) -> buf.writeBlockPos(tile.getBlockPos()));
     }

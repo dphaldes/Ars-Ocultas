@@ -1,11 +1,11 @@
-package com.mystchonky.arsocultas.common.init;
+package com.mystchonky.arsocultas.common.registrar;
 
 import com.hollingsworth.arsnouveau.common.block.tile.MobJarTile;
 import com.klikli_dev.occultism.common.container.spirit.SpiritContainer;
 import com.klikli_dev.occultism.common.container.spirit.SpiritTransporterContainer;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
 import com.mystchonky.arsocultas.ArsOcultas;
-import com.mystchonky.arsocultas.common.mob_jar.MenuProviderWrapper;
+import com.mystchonky.arsocultas.common.mob_jar.SpiritMenuWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.inventory.MenuType;
@@ -14,7 +14,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public class ArsOcultasContainers {
+public class MenuTypeRegistrar {
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(
             ForgeRegistries.MENU_TYPES, ArsOcultas.MODID);
 
@@ -24,7 +24,7 @@ public class ArsOcultasContainers {
                             .create((windowId, inv, data) -> {
                                 BlockPos pos = data.readBlockPos();
                                 MobJarTile tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(pos);
-                                return MenuProviderWrapper.wrappedSpirit(windowId, inv, (SpiritEntity) tile.getEntity());
+                                return SpiritMenuWrapper.wrappedSpirit(windowId, inv, (SpiritEntity) tile.getEntity());
                             }));
 
 
@@ -34,6 +34,6 @@ public class ArsOcultasContainers {
                             .create((windowId, inv, data) -> {
                                 BlockPos pos = data.readBlockPos();
                                 MobJarTile tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(pos);
-                                return MenuProviderWrapper.wrappedSpiritTransporter(windowId, inv, (SpiritEntity) tile.getEntity());
+                                return SpiritMenuWrapper.wrappedSpiritTransporter(windowId, inv, (SpiritEntity) tile.getEntity());
                             }));
 }

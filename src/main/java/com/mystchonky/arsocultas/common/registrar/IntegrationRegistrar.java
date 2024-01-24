@@ -1,4 +1,4 @@
-package com.mystchonky.arsocultas.common.init;
+package com.mystchonky.arsocultas.common.registrar;
 
 import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
 import com.hollingsworth.arsnouveau.api.mob_jar.JarBehaviorRegistry;
@@ -11,14 +11,13 @@ import com.mystchonky.arsocultas.common.mob_jar.SpiritBehaviour;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Integrations {
+public class IntegrationRegistrar {
 
 
     public static List<AbstractSpellPart> registeredSpells = new ArrayList<>();
     public static List<AbstractFamiliarHolder> registeredFamiliars = new ArrayList<>();
 
     public static void init() {
-
         registerGlyphs();
     }
 

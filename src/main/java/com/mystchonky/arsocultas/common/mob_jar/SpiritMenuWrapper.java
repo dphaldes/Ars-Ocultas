@@ -4,27 +4,28 @@ import com.klikli_dev.occultism.common.container.spirit.SpiritContainer;
 import com.klikli_dev.occultism.common.container.spirit.SpiritTransporterContainer;
 import com.klikli_dev.occultism.common.entity.job.SpiritJob;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
-import com.mystchonky.arsocultas.common.init.ArsOcultasContainers;
+import com.mystchonky.arsocultas.common.registrar.MenuTypeRegistrar;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class MenuProviderWrapper<T extends MenuProvider> implements MenuProvider {
+public class SpiritMenuWrapper<T extends MenuProvider> implements MenuProvider {
 
     private final T menuProvider;
     private final SpiritEntity spirit;
 
-    public MenuProviderWrapper(T menuProvider, SpiritEntity spirit) {
+    public SpiritMenuWrapper(T menuProvider, SpiritEntity spirit) {
         this.menuProvider = menuProvider;
         this.spirit = spirit;
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return menuProvider.getDisplayName();
     }
 
@@ -41,8 +42,8 @@ public class MenuProviderWrapper<T extends MenuProvider> implements MenuProvider
     public static SpiritContainer wrappedSpirit(int windowId, Inventory inv, SpiritEntity spirit) {
         return new SpiritContainer(windowId, inv, spirit) {
             @Override
-            public MenuType<?> getType() {
-                return ArsOcultasContainers.SPIRIT_WRAPPER.get();
+            public @NotNull MenuType<?> getType() {
+                return MenuTypeRegistrar.SPIRIT_WRAPPER.get();
             }
         };
     }
@@ -50,8 +51,8 @@ public class MenuProviderWrapper<T extends MenuProvider> implements MenuProvider
     public static SpiritTransporterContainer wrappedSpiritTransporter(int windowId, Inventory inv, SpiritEntity spirit) {
         return new SpiritTransporterContainer(windowId, inv, spirit) {
             @Override
-            public MenuType<?> getType() {
-                return ArsOcultasContainers.SPIRIT_TRANSPORT_WRAPPER.get();
+            public @NotNull MenuType<?> getType() {
+                return MenuTypeRegistrar.SPIRIT_TRANSPORT_WRAPPER.get();
             }
         };
     }

@@ -122,7 +122,7 @@ dependencies {
     implementation(annotationProcessor("com.github.llamalad7.mixinextras:mixinextras-common:0.2.0-beta.8"))
     implementation("com.github.llamalad7.mixinextras:mixinextras-forge:0.2.0-beta.8")
 
-    implementation fg.deobf("maven.modrinth:occultism:${occultism_version}")
+    implementation fg.deobf("maven.modrinth:occultism:${mc_version}-${occultism_version}")
     implementation fg.deobf("maven.modrinth:smartbrainlib:${smartbrainlib}")
     runtimeOnly fg.deobf("maven.modrinth:modonomicon:${modonomicon}")
 

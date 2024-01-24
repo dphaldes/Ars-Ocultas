@@ -3,12 +3,17 @@ package com.mystchonky.arsocultas;
 import com.hollingsworth.arsnouveau.setup.proxy.ClientProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.IProxy;
 import com.hollingsworth.arsnouveau.setup.proxy.ServerProxy;
+import com.klikli_dev.occultism.client.gui.spirit.SpiritGui;
+import com.klikli_dev.occultism.client.gui.spirit.SpiritTransporterGui;
+import com.klikli_dev.occultism.common.container.spirit.SpiritContainer;
 import com.mystchonky.arsocultas.common.config.BaseConfig;
+import com.mystchonky.arsocultas.common.init.ArsOcultasContainers;
 import com.mystchonky.arsocultas.common.init.ArsOcultasItems;
 import com.mystchonky.arsocultas.common.init.ArsOcultasLang;
 import com.mystchonky.arsocultas.common.init.Integrations;
 import com.mystchonky.arsocultas.common.network.Networking;
 import com.tterrag.registrate.Registrate;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.Lazy;
@@ -55,13 +60,14 @@ public class ArsOcultas {
         ctx.registerConfig(ModConfig.Type.COMMON, BaseConfig.COMMON_SPEC, MODID + "/base-common.toml");
         ctx.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
+        IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
         ArsOcultasItems.register();
+        ArsOcultasContainers.CONTAINERS.register(modbus);
         Integrations.init();
         ArsOcultasLang.register();
 
-        IEventBus modbus = FMLJavaModLoadingContext.get().getModEventBus();
-        modbus.addListener(this::setup);
-        modbus.addListener(this::doClientStuff);
+        modbus.addListener(this::commonSetup);
+        modbus.addListener(this::clientSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -70,13 +76,16 @@ public class ArsOcultas {
         return new ResourceLocation(MODID, path);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
+    private void commonSetup(final FMLCommonSetupEvent event) {
         Integrations.postInit();
         Networking.registerMessages();
     }
 
-    private void doClientStuff(final FMLClientSetupEvent event) {
-
+    private void clientSetup(final FMLClientSetupEvent event) {
+        event.enqueueWork(()-> {
+            MenuScreens.register(ArsOcultasContainers.SPIRIT_WRAPPER.get(), SpiritGui<SpiritContainer>::new);
+            MenuScreens.register(ArsOcultasContainers.SPIRIT_TRANSPORT_WRAPPER.get(), SpiritTransporterGui::new);
+        });
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

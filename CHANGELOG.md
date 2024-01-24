@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0] - 2024-01-24
+
+### Changed
+
+- Janitor Spirit works more closer to an allay. Similar to allay it will automatically push to inventory next to it
+- Spirit GUIs are functional now. Shift+RightClick with empty hand to open the GUI
+
 ## [1.1.0] - 2023-10-12
 
 ### Added

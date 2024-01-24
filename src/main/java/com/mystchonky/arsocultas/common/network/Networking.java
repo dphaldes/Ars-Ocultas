@@ -1,5 +1,6 @@
 package com.mystchonky.arsocultas.common.network;
 
+import com.klikli_dev.occultism.network.OccultismPacketHandler;
 import com.mystchonky.arsocultas.ArsOcultas;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -24,6 +25,7 @@ public class Networking {
     public static void registerMessages() {
         INSTANCE = NetworkRegistry.newSimpleChannel(new ResourceLocation(ArsOcultas.MODID, "network"), () -> "1.0", s -> true, s -> true);
 
+        INSTANCE.registerMessage(nextID(), MessageSpiritSetFilter.class, MessageSpiritSetFilter::encode, MessageSpiritSetFilter::new, OccultismPacketHandler::handle);
     }
 
 

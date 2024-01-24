@@ -60,8 +60,8 @@ public class ArsOcultas {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        ArsOcultasRegistrar.commonSetup(event);
         Networking.registerMessages();
+        ArsOcultasRegistrar.commonSetup(event);
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {

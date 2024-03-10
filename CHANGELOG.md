@@ -1,11 +1,16 @@
 # Changelog
 
+## [1.2.2] - 2024-03-10
+
+### Fixed
+
+- Unlock Registrate version range
+
 ## [1.2.1] - 2024-01-24
 
-## Fixed
+### Fixed
 
 - Fixed a bug in filter button not working in Transporter Spirit GUI (and Janitor).
-
 
 ## [1.2.0] - 2024-01-24
 

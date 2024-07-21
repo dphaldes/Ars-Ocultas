@@ -1,0 +1,59 @@
+modLoader = "javafml"
+loaderVersion = "${loader_version_range}"
+issueTrackerURL = "${issue_tracker}"
+license = "${mod_license}"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+#updateJSONURL="http://myurl.me/"
+#displayURL="http://example.com/"
+logoFile = "logo.png"
+# credits = "Thanks to the original author of Tome of Blood SadieLuna"
+authors = "${mod_authors}"
+description = '''${mod_description}'''
+
+#[[mixins]]
+#config="${mod_id}.mixins.json"
+
+#[[accessTransformers]]
+#file="META-INF/accesstransformer.cfg"
+
+# The coremods config file path is not configurable and is always loaded from META-INF/coremods.json
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type = required #mandatory
+# The version range of the dependency
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+#[[dependencies.ars_ocultas]]
+#modId = "patchouli"
+#mandatory = true
+#versionRange = "[1.20.1-81,)"
+#ordering = "AFTER"
+#side = "BOTH"
+#
+#[[dependencies.ars_ocultas]]
+#modId = "curios"
+#mandatory = true
+#versionRange = "[1.18.1-5.0.3.0,)"
+#ordering = "AFTER"
+#side = "BOTH"
+#
+#[[dependencies.ars_ocultas]]
+#modId = "ars_nouveau"
+#mandatory = true
+#versionRange = "[4.5.0,)"
+#ordering = "AFTER"
+#side = "BOTH"
+#
+#[[dependencies.ars_ocultas]]
+#modId = "occultism"
+#mandatory = true
+#versionRange = "[1.20.1-1.85.0,)"
+#ordering = "AFTER"
+#side = "BOTH"

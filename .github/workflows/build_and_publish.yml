@@ -38,17 +38,6 @@ jobs:
           validation_level: warn
           version: ${{ steps.tag_name.outputs.current_version }}
           path: ./CHANGELOG.md
-      - name: Create Release
-        id: create_release
-        uses: ncipollo/release-action@v1
-        with:
-          allowUpdates: true
-          draft: false
-          name: Ars Ocultas ${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}
-          body: ${{ steps.changelog_reader.outputs.changes }}
-          tag: ${{ github.ref }}
-          artifacts: ./build/libs/ars_ocultas-${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}.jar
-          artifactContentType: application/java-archive
       - name: Upload to Mod Platforms
         uses: Kir-Antipov/mc-publish@v3.3
         with:

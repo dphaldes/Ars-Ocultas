@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.0.0] - 2024-07-22
+
+Ported to NeoForge 1.21
+
+### Changed
+
+- Port to NeoForge
+- Forge support is now dropped for 1.21+
+
 ## [1.2.2] - 2024-03-10
 
 ### Fixed

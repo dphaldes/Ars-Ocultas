@@ -2,29 +2,28 @@ package com.mystchonky.arsocultas.common.network;
 
 import com.hollingsworth.arsnouveau.common.block.tile.MobJarTile;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
-import com.klikli_dev.occultism.network.MessageBase;
+import com.mystchonky.arsocultas.ArsOcultas;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraftforge.network.NetworkEvent;
+import org.jetbrains.annotations.NotNull;
 
-public class MessageSpiritSetFilter extends MessageBase {
+public record MessageSpiritSetFilter(boolean isBlacklistFilter, BlockPos blockPos) implements Message.Server {
 
-    public boolean isBlacklistFilter;
-    public BlockPos blockPos;
+    public static final Type<MessageSpiritSetFilter> TYPE = new Type<>(ArsOcultas.prefix("sync_arsenal"));
+    public static final StreamCodec<RegistryFriendlyByteBuf, MessageSpiritSetFilter> STREAM_CODEC =
+            StreamCodec.composite(ByteBufCodecs.BOOL, MessageSpiritSetFilter::isBlacklistFilter, BlockPos.STREAM_CODEC, MessageSpiritSetFilter::blockPos, MessageSpiritSetFilter::new);
 
-    public MessageSpiritSetFilter(FriendlyByteBuf buf) {
-        this.decode(buf);
-    }
-
-    public MessageSpiritSetFilter(boolean isBlacklistFilter, BlockPos blockPos) {
-        this.isBlacklistFilter = isBlacklistFilter;
-        this.blockPos = blockPos;
+    @Override
+    public @NotNull Type<? extends CustomPacketPayload> type() {
+        return TYPE;
     }
 
     @Override
-    public void onServerReceived(MinecraftServer minecraftServer, ServerPlayer player, NetworkEvent.Context context) {
+    public void onServerReceived(ServerPlayer player) {
         if (player.level().getBlockEntity(this.blockPos) instanceof MobJarTile jar) {
             if (jar.getEntity() instanceof SpiritEntity spirit) {
                 spirit.setFilterBlacklist(this.isBlacklistFilter);
@@ -32,16 +31,5 @@ public class MessageSpiritSetFilter extends MessageBase {
         }
     }
 
-    @Override
-    public void encode(FriendlyByteBuf buf) {
-        buf.writeBoolean(this.isBlacklistFilter);
-        buf.writeBlockPos(this.blockPos);
-    }
 
-    @Override
-    public void decode(FriendlyByteBuf buf) {
-        this.isBlacklistFilter = buf.readBoolean();
-        this.blockPos = buf.readBlockPos();
-
-    }
 }

@@ -10,7 +10,6 @@ import com.klikli_dev.occultism.api.OccultismAPI;
 import com.klikli_dev.occultism.common.entity.job.CleanerJob;
 import com.klikli_dev.occultism.common.entity.job.SpiritJob;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
-import com.klikli_dev.occultism.exceptions.ItemHandlerMissingException;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -25,9 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.items.ItemHandlerHelper;
-import net.minecraftforge.items.ItemStackHandler;
-import net.minecraftforge.network.NetworkHooks;
+import net.neoforged.neoforge.items.ItemHandlerHelper;
 
 import java.util.List;
 
@@ -45,9 +42,8 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
 
         if (canAcceptItemStack(spirit, heldStack)) {
             ItemStack duplicate = heldStack.copy();
-            ItemStackHandler handler = spirit.itemStackHandler.orElseThrow(ItemHandlerMissingException::new);
-            if (ItemHandlerHelper.insertItemStacked(handler, duplicate, true).getCount() < duplicate.getCount()) {
-                ItemStack remaining = ItemHandlerHelper.insertItemStacked(handler, duplicate, false);
+            if (ItemHandlerHelper.insertItemStacked(spirit.inventory, duplicate, true).getCount() < duplicate.getCount()) {
+                ItemStack remaining = ItemHandlerHelper.insertItemStacked(spirit.inventory, duplicate, false);
                 heldStack.setCount(remaining.getCount());
             }
         }
@@ -68,9 +64,8 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
                 ItemEntity itemEntity = itemEntities.stream().filter(item -> OccultismAPI.get().canPickupItem(spirit, item).orElse(false)).findFirst().orElse(null);
                 if (itemEntity != null) {
                     ItemStack duplicate = itemEntity.getItem().copy();
-                    ItemStackHandler handler = spirit.itemStackHandler.orElseThrow(ItemHandlerMissingException::new);
-                    if (ItemHandlerHelper.insertItemStacked(handler, duplicate, true).getCount() < duplicate.getCount()) {
-                        ItemStack remaining = ItemHandlerHelper.insertItemStacked(handler, duplicate, false);
+                    if (ItemHandlerHelper.insertItemStacked(spirit.inventory, duplicate, true).getCount() < duplicate.getCount()) {
+                        ItemStack remaining = ItemHandlerHelper.insertItemStacked(spirit.inventory, duplicate, false);
                         itemEntity.getItem().setCount(remaining.getCount());
                     }
                 }
@@ -122,6 +117,8 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
         else
             menuProvider = new SpiritMenuWrapper<>(spirit, spirit);
 
-        NetworkHooks.openScreen((ServerPlayer) playerEntity, menuProvider, (buf) -> buf.writeBlockPos(tile.getBlockPos()));
+        if (playerEntity instanceof ServerPlayer serverPlayer) {
+            serverPlayer.openMenu(menuProvider, buf -> buf.writeBlockPos(tile.getBlockPos()));
+        }
     }
 }

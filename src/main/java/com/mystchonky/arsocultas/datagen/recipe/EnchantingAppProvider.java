@@ -1,6 +1,7 @@
 package com.mystchonky.arsocultas.datagen.recipe;
 
-import com.hollingsworth.arsnouveau.api.enchanting_apparatus.EnchantingApparatusRecipe;
+import com.hollingsworth.arsnouveau.common.crafting.recipes.EnchantingApparatusRecipe;
+import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeBuilder;
 import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.klikli_dev.occultism.registry.OccultismItems;
@@ -24,15 +25,15 @@ public class EnchantingAppProvider extends ApparatusRecipeProvider {
                 .withPedestalItem(1, ItemsRegistry.CONJURATION_ESSENCE)
                 .withPedestalItem(1, ItemsRegistry.MANIPULATION_ESSENCE)
                 .withPedestalItem(1, OccultismItems.DATURA)
-                .withResult(OccultismItems.SPIRIT_ATTUNED_GEM)
+                .withResult(OccultismItems.DEMONS_DREAM_ESSENCE)
                 .withSourceCost(500)
                 .build()
         );
 
-        for (EnchantingApparatusRecipe g : recipes) {
-            if (g != null) {
-                Path path = getRecipePath(output, g.getId().getPath());
-                saveStable(pOutput, g.asRecipe(), path);
+        for (ApparatusRecipeBuilder.RecipeWrapper<? extends EnchantingApparatusRecipe> wrapper : recipes) {
+            if (wrapper != null) {
+                Path path = getRecipePath(output, wrapper.id().getPath());
+                saveStable(pOutput, wrapper.serialize(), path);
             }
         }
 

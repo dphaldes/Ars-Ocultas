@@ -1,9 +1,9 @@
 package com.mystchonky.arsocultas.common.registrar;
 
 import com.hollingsworth.arsnouveau.api.familiar.AbstractFamiliarHolder;
-import com.hollingsworth.arsnouveau.api.mob_jar.JarBehaviorRegistry;
 import com.hollingsworth.arsnouveau.api.registry.FamiliarRegistry;
 import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
+import com.hollingsworth.arsnouveau.api.registry.JarBehaviorRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.klikli_dev.occultism.registry.OccultismEntities;
 import com.mystchonky.arsocultas.common.mob_jar.SpiritBehaviour;

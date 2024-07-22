@@ -24,36 +24,21 @@ description = '''${mod_description}'''
 
 [[dependencies.${mod_id}]]
 modId = "minecraft"
-type = required #mandatory
-# The version range of the dependency
+type = "required"
 versionRange="${minecraft_version_range}"
 ordering="NONE"
 side="BOTH"
 
-#[[dependencies.ars_ocultas]]
-#modId = "patchouli"
-#mandatory = true
-#versionRange = "[1.20.1-81,)"
-#ordering = "AFTER"
-#side = "BOTH"
-#
-#[[dependencies.ars_ocultas]]
-#modId = "curios"
-#mandatory = true
-#versionRange = "[1.18.1-5.0.3.0,)"
-#ordering = "AFTER"
-#side = "BOTH"
-#
-#[[dependencies.ars_ocultas]]
-#modId = "ars_nouveau"
-#mandatory = true
-#versionRange = "[4.5.0,)"
-#ordering = "AFTER"
-#side = "BOTH"
-#
-#[[dependencies.ars_ocultas]]
-#modId = "occultism"
-#mandatory = true
-#versionRange = "[1.20.1-1.85.0,)"
-#ordering = "AFTER"
-#side = "BOTH"
+[[dependencies.${mod_id}]]
+modId = "ars_nouveau"
+type = "required"
+versionRange="${ars_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "occultism"
+type = "required"
+versionRange="${occultism_version_range}"
+ordering="NONE"
+side="BOTH"

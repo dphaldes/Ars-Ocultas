@@ -1,18 +1,13 @@
 package com.mystchonky.arsocultas.common.registrar;
 
 import com.mystchonky.arsocultas.ArsOcultas;
-import com.tterrag.registrate.Registrate;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ItemRegistrar {
-    private static final Registrate REGISTRATE = ArsOcultas.registrate();
+    private static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ArsOcultas.MODID);
 
-//    public static final RegistryEntry<CreativeModeTab> ARS_OSCURA_TAB = REGISTRATE.defaultCreativeTab("ars_oscura",
-//                    tab -> tab.icon(() -> ItemsRegistry.WAND.get().getDefaultInstance())
-//                            .build()
-//            )
-//            .register();
-
-
-    public static void register() {
+    public static void register(IEventBus modbus) {
+        ITEMS.register(modbus);
     }
 }

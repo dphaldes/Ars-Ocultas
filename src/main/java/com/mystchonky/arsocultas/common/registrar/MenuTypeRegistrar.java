@@ -8,19 +8,19 @@ import com.mystchonky.arsocultas.ArsOcultas;
 import com.mystchonky.arsocultas.common.mob_jar.SpiritMenuWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraftforge.common.extensions.IForgeMenuType;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 public class MenuTypeRegistrar {
-    public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(
-            ForgeRegistries.MENU_TYPES, ArsOcultas.MODID);
+    public static final DeferredRegister<MenuType<?>> MENU_TYPES = DeferredRegister.create(Registries.MENU, ArsOcultas.MODID);
 
-    public static final RegistryObject<MenuType<SpiritContainer>> SPIRIT_WRAPPER =
-            CONTAINERS.register("spirit_wrapper",
-                    () -> IForgeMenuType
+    public static final Supplier<MenuType<SpiritContainer>> SPIRIT_WRAPPER = MENU_TYPES.register("spirit_wrapper",
+            () -> IMenuTypeExtension
                             .create((windowId, inv, data) -> {
                                 BlockPos pos = data.readBlockPos();
                                 MobJarTile tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(pos);
@@ -28,12 +28,17 @@ public class MenuTypeRegistrar {
                             }));
 
 
-    public static final RegistryObject<MenuType<SpiritTransporterContainer>> SPIRIT_TRANSPORT_WRAPPER =
-            CONTAINERS.register("spirit_transport_wrapper",
-                    () -> IForgeMenuType
+    public static final Supplier<MenuType<SpiritTransporterContainer>> SPIRIT_TRANSPORT_WRAPPER =
+            MENU_TYPES.register("spirit_transport_wrapper",
+                    () -> IMenuTypeExtension
                             .create((windowId, inv, data) -> {
                                 BlockPos pos = data.readBlockPos();
                                 MobJarTile tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(pos);
                                 return SpiritMenuWrapper.wrappedSpiritTransporter(windowId, inv, (SpiritEntity) tile.getEntity());
                             }));
+
+
+    public static void register(IEventBus modbus) {
+        MENU_TYPES.register(modbus);
+    }
 }

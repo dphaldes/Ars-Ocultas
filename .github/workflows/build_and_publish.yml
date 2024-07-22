@@ -54,8 +54,11 @@ jobs:
         with:
           modrinth-id: Tsw8vbks
           modrinth-token: ${{ secrets.MODRINTH_API_KEY }}
+
           curseforge-id: 907843
           curseforge-token: ${{ secrets.CURSEFORGE_API_KEY }}
+
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
           files: |
             build/libs/ars_ocultas-${{ env.MC_VERSION }}-${{ steps.tag_name.outputs.current_version }}.jar
@@ -66,7 +69,7 @@ jobs:
             ${{ env.MC_VERSION }}
           changelog: |-
             ${{ steps.changelog_reader.outputs.changes }}
+          loaders: neoforge
           dependencies: |
-            forge(required)
             ars-nouveau(required)
             occultism(required)

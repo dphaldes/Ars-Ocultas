@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.0.1] - 2024-07-24
+
+### Fixed
+
+- Fixed Recipes
+
 ## [2.0.0] - 2024-07-22
 
 Ported to NeoForge 1.21

@@ -1,11 +1,11 @@
-package com.mystchonky.arsocultas.datagen.recipe;
+package com.mystchonky.arsocultas.data.recipe;
 
 import com.hollingsworth.arsnouveau.common.crafting.recipes.EnchantingApparatusRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeBuilder;
 import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.klikli_dev.occultism.registry.OccultismItems;
-import com.mystchonky.arsocultas.datagen.DataProvider;
+import com.mystchonky.arsocultas.data.DataProvider;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 
@@ -19,13 +19,12 @@ public class EnchantingAppProvider extends ApparatusRecipeProvider {
 
     @Override
     public void collectJsons(CachedOutput pOutput) {
-        //example of an apparatus recipe
         recipes.add(builder()
                 .withReagent(ItemsRegistry.SOURCE_GEM)
                 .withPedestalItem(1, ItemsRegistry.CONJURATION_ESSENCE)
                 .withPedestalItem(1, ItemsRegistry.MANIPULATION_ESSENCE)
-                .withPedestalItem(1, OccultismItems.DATURA)
-                .withResult(OccultismItems.DEMONS_DREAM_ESSENCE)
+                .withPedestalItem(1, OccultismItems.DEMONS_DREAM_ESSENCE)
+                .withResult(OccultismItems.SPIRIT_ATTUNED_GEM)
                 .withSourceCost(500)
                 .build()
         );
@@ -40,7 +39,7 @@ public class EnchantingAppProvider extends ApparatusRecipeProvider {
     }
 
     protected static Path getRecipePath(Path pathIn, String str) {
-        return pathIn.resolve("data/" + DataProvider.root + "/recipes/" + str + ".json");
+        return pathIn.resolve("data/" + DataProvider.root + "/recipe/" + str + ".json");
     }
 
     @Override

@@ -1,10 +1,10 @@
-package com.mystchonky.arsocultas.datagen.recipe;
+package com.mystchonky.arsocultas.data.recipe;
 
 import com.hollingsworth.arsnouveau.common.crafting.recipes.ImbuementRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.ImbuementRecipeProvider;
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.klikli_dev.occultism.registry.OccultismItems;
-import com.mystchonky.arsocultas.datagen.DataProvider;
+import com.mystchonky.arsocultas.data.DataProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
@@ -57,7 +57,7 @@ public class ImbuementProvider extends ImbuementRecipeProvider {
     }
 
     protected Path getRecipePath(Path pathIn, String str) {
-        return pathIn.resolve("data/" + DataProvider.root + "/recipes/" + str + ".json");
+        return pathIn.resolve("data/" + DataProvider.root + "/recipe/" + str + ".json");
     }
 
     @Override

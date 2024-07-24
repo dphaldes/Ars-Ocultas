@@ -1,4 +1,4 @@
-package com.mystchonky.arsocultas.datagen;
+package com.mystchonky.arsocultas.data;
 
 
 import com.mystchonky.arsocultas.ArsOcultas;

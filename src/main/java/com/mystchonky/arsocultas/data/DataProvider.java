@@ -1,8 +1,8 @@
-package com.mystchonky.arsocultas.datagen;
+package com.mystchonky.arsocultas.data;
 
 import com.mystchonky.arsocultas.ArsOcultas;
-import com.mystchonky.arsocultas.datagen.recipe.EnchantingAppProvider;
-import com.mystchonky.arsocultas.datagen.recipe.ImbuementProvider;
+import com.mystchonky.arsocultas.data.recipe.EnchantingAppProvider;
+import com.mystchonky.arsocultas.data.recipe.ImbuementProvider;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;

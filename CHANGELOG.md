@@ -4,7 +4,7 @@
 
 ### Fixed
 
-- Fixed Recipes
+- Fixed Recipes 
 
 ## [2.0.0] - 2024-07-22
 

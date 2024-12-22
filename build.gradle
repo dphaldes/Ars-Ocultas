@@ -125,12 +125,23 @@ repositories {
     }
     mavenCentral()
     mavenLocal()
+    maven {
+        url "https://dl.cloudsmith.io/public/klikli-dev/mods/maven/"
+        content {
+            includeGroup "com.klikli_dev"
+        }
+    }
+    maven {
+        name = "TerraformersMC"
+        url = "https://maven.terraformersmc.com/"
+    }
 }
 
 dependencies {
     implementation "com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}"
-    implementation "maven.modrinth:occultism:${occultism_version}"
-    implementation "net.tslat.smartbrainlib:SmartBrainLib-neoforge-1.21:${smartbrainlib}"
+//    implementation "maven.modrinth:occultism:${occultism_version}"
+    implementation "com.klikli_dev:occultism-1.21.1-neoforge:1.161.0"
+    implementation "net.tslat.smartbrainlib:SmartBrainLib-neoforge-1.21.1:${smartbrainlib}"
 
     compileOnly "mezz.jei:jei-1.21-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-1.21-neoforge-api:${jei_version}"

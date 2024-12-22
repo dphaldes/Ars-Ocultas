@@ -2,7 +2,6 @@ package com.mystchonky.arsocultas.common.mob_jar;
 
 import com.hollingsworth.arsnouveau.api.item.inv.FilterableItemHandler;
 import com.hollingsworth.arsnouveau.api.item.inv.InventoryManager;
-import com.hollingsworth.arsnouveau.api.item.inv.MultiInsertReference;
 import com.hollingsworth.arsnouveau.api.mob_jar.JarBehavior;
 import com.hollingsworth.arsnouveau.api.util.InvUtil;
 import com.hollingsworth.arsnouveau.common.block.tile.MobJarTile;
@@ -13,8 +12,6 @@ import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -76,17 +73,9 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
         spirit.getJob().ifPresent(spiritJob -> {
             // CleanerJob is similar to allay
             if (spiritJob instanceof CleanerJob) {
-                List<FilterableItemHandler> inventories = InvUtil.adjacentInventories(level, tile.getBlockPos());
-                if (inventories.isEmpty()) {
-                    return;
-                }
-                InventoryManager manager = new InventoryManager(inventories);
-                MultiInsertReference reference = manager.insertStackWithReference(spirit.getItemInHand(InteractionHand.MAIN_HAND));
-                if (!reference.isEmpty()) {
-                    ItemStack remainder = reference.getRemainder();
-                    spirit.setItemInHand(InteractionHand.MAIN_HAND, remainder);
-                    level.playSound(null, tile.getBlockPos(), SoundEvents.ITEM_PICKUP, SoundSource.BLOCKS, 0.8F, 1.0F);
-                }
+                var input = spirit.getItemInHand(InteractionHand.MAIN_HAND);
+                var remainder = tryItemNearbyTransfer(tile, level, input.copy());
+                spirit.setItemInHand(InteractionHand.MAIN_HAND, remainder);
             }
 
             // Update job
@@ -120,5 +109,18 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
         if (playerEntity instanceof ServerPlayer serverPlayer) {
             serverPlayer.openMenu(menuProvider, buf -> buf.writeBlockPos(tile.getBlockPos()));
         }
+    }
+
+    public ItemStack tryItemNearbyTransfer(MobJarTile tile, Level level, ItemStack input) {
+        List<FilterableItemHandler> inventories = InvUtil.adjacentInventories(level, tile.getBlockPos());
+        if (inventories.isEmpty()) {
+            return input;
+        }
+        InventoryManager manager = new InventoryManager(inventories);
+        var reference = manager.insertStackWithReference(input);
+        if (!reference.isEmpty()) {
+            return reference.getRemainder();
+        }
+        return input;
     }
 }

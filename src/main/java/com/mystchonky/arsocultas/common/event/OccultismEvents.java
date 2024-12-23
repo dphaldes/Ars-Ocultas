@@ -2,6 +2,7 @@ package com.mystchonky.arsocultas.common.event;
 
 import com.hollingsworth.arsnouveau.common.block.tile.MobJarTile;
 import com.klikli_dev.occultism.common.entity.job.CrusherJob;
+import com.klikli_dev.occultism.common.entity.job.SmelterJob;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
 import com.mystchonky.arsocultas.ArsOcultas;
 import com.mystchonky.arsocultas.common.mob_jar.SpiritBehaviour;
@@ -23,8 +24,25 @@ public class OccultismEvents {
                         event.setResult(remainder);
                     }
                 });
-
             }
         }
     }
+
+    @SubscribeEvent
+    public static void smelterJob(SmelterJob.SmelterJobEvent event) {
+        var entity = event.getEntity();
+        var level = event.getEntity().level();
+        if (entity instanceof SpiritEntity spirit) {
+            if (level.getBlockEntity(spirit.blockPosition()) instanceof MobJarTile jar) {
+                jar.dispatchBehavior(behavior -> {
+                    if (behavior instanceof SpiritBehaviour<? extends SpiritEntity> spiritBehaviour) {
+                        var remainder = spiritBehaviour.tryItemNearbyTransfer(jar, level, event.getResult());
+                        event.setResult(remainder);
+                    }
+                });
+            }
+        }
+    }
+
+
 }

@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0] - 2024-12-23
+
+### Added
+
+- Smelter and Crushers spirits now try to push to adjacent inventories automatically.
+  This is done to reduce item entity spawn lag.
+
+### Changed
+
+- Bumped minimum version for Neoforge, Occultism and Ars Nouveau
+- Built against Minecraft 1.21.1
+
 ## [2.0.1] - 2024-07-24
 
 ### Fixed

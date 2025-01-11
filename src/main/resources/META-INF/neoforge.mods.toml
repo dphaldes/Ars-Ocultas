@@ -14,8 +14,8 @@ logoFile = "logo.png"
 authors = "${mod_authors}"
 description = '''${mod_description}'''
 
-#[[mixins]]
-#config="${mod_id}.mixins.json"
+[[mixins]]
+config="${mod_id}.mixins.json"
 
 #[[accessTransformers]]
 #file="META-INF/accesstransformer.cfg"
@@ -40,5 +40,5 @@ side="BOTH"
 modId = "occultism"
 type = "required"
 versionRange="${occultism_version_range}"
-ordering="NONE"
+ordering="AFTER"
 side="BOTH"

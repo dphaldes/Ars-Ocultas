@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8.3",
+  "compatibilityLevel": "JAVA_21",
+  "package": "com.mystchonky.arsocultas.common.mixins",
+  "mixins": [
+    "IOtherworldBlockMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

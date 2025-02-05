@@ -1,6 +1,5 @@
 package com.mystchonky.arsocultas.data.client;
 
-
 import com.mystchonky.arsocultas.ArsOcultas;
 import com.mystchonky.arsocultas.common.registrar.BlockRegistrar;
 import net.minecraft.data.PackOutput;
@@ -13,7 +12,7 @@ public class ItemModelProvider extends net.neoforged.neoforge.client.model.gener
 
     @Override
     protected void registerModels() {
-        basicItem(BlockRegistrar.ALTAR.asItem());
+        simpleBlockItem(BlockRegistrar.ALTAR.get());
     }
 
 }

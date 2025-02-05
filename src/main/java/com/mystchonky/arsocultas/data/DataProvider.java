@@ -1,6 +1,7 @@
 package com.mystchonky.arsocultas.data;
 
 import com.mystchonky.arsocultas.ArsOcultas;
+import com.mystchonky.arsocultas.data.client.BlockStateProvider;
 import com.mystchonky.arsocultas.data.client.ItemModelProvider;
 import com.mystchonky.arsocultas.data.recipe.EnchantingAppProvider;
 import com.mystchonky.arsocultas.data.recipe.ImbuementProvider;
@@ -22,6 +23,7 @@ public class DataProvider {
         generator.addProvider(event.includeServer(), new EnchantingAppProvider(generator));
 
         generator.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
+        generator.addProvider(event.includeClient(), new BlockStateProvider(output, helper));
         generator.addProvider(event.includeClient(), new ItemModelProvider(output, helper));
     }
 

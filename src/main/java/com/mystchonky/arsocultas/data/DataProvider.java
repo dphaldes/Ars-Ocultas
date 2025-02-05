@@ -1,9 +1,9 @@
 package com.mystchonky.arsocultas.data;
 
 import com.mystchonky.arsocultas.ArsOcultas;
+import com.mystchonky.arsocultas.data.client.ItemModelProvider;
 import com.mystchonky.arsocultas.data.recipe.EnchantingAppProvider;
 import com.mystchonky.arsocultas.data.recipe.ImbuementProvider;
-import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -14,13 +14,15 @@ public class DataProvider {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        net.minecraft.data.DataGenerator gen = event.getGenerator();
-        PackOutput output = gen.getPackOutput();
+        var generator = event.getGenerator();
+        var output = generator.getPackOutput();
+        var helper = event.getExistingFileHelper();
 
-        gen.addProvider(event.includeServer(), new ImbuementProvider(event.getLookupProvider(), gen));
-        gen.addProvider(event.includeServer(), new EnchantingAppProvider(gen));
+        generator.addProvider(event.includeServer(), new ImbuementProvider(event.getLookupProvider(), generator));
+        generator.addProvider(event.includeServer(), new EnchantingAppProvider(generator));
 
-        gen.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
+        generator.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
+        generator.addProvider(event.includeClient(), new ItemModelProvider(output, helper));
     }
 
 }

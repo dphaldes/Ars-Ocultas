@@ -52,7 +52,9 @@ public class MinecraftEvents {
                     return;
                 }
 
-                if (jarEntity.getType().is(OccultismTags.Entities.SOUL_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.SOUL_GEM_ITEM.get())) {
+                var type = jarEntity.getType();
+
+                if (!type.is(EntityTags.JAR_WHITELIST) && type.is(EntityTags.JAR_BLACKLIST)) {
                     player.sendSystemMessage(
                             Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
                     event.setCancellationResult(InteractionResult.FAIL);
@@ -60,7 +62,15 @@ public class MinecraftEvents {
                     return;
                 }
 
-                if (jarEntity.getType().is(OccultismTags.Entities.TRINITY_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.TRINITY_GEM_ITEM.get())) {
+                if (type.is(OccultismTags.Entities.SOUL_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.SOUL_GEM_ITEM.get())) {
+                    player.sendSystemMessage(
+                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                    event.setCancellationResult(InteractionResult.FAIL);
+                    event.setCanceled(true);
+                    return;
+                }
+
+                if (type.is(OccultismTags.Entities.TRINITY_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.TRINITY_GEM_ITEM.get())) {
                     player.sendSystemMessage(
                             Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
                     event.setCancellationResult(InteractionResult.FAIL);
@@ -95,6 +105,22 @@ public class MinecraftEvents {
                             Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
                     event.setCancellationResult(InteractionResult.FAIL);
                     event.setCanceled(true);
+                }
+
+                if (type.is(OccultismTags.Entities.SOUL_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.SOUL_GEM_ITEM.get())) {
+                    player.sendSystemMessage(
+                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                    event.setCancellationResult(InteractionResult.FAIL);
+                    event.setCanceled(true);
+                    return;
+                }
+
+                if (type.is(OccultismTags.Entities.TRINITY_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.TRINITY_GEM_ITEM.get())) {
+                    player.sendSystemMessage(
+                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                    event.setCancellationResult(InteractionResult.FAIL);
+                    event.setCanceled(true);
+                    return;
                 }
 
                 Entity entity = type.create(level);

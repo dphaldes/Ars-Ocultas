@@ -54,7 +54,7 @@ public class MinecraftEvents {
 
                 var type = jarEntity.getType();
 
-                if (!type.is(EntityTags.JAR_WHITELIST) && type.is(EntityTags.JAR_BLACKLIST)) {
+                if (type.is(EntityTags.JAR_RELEASE_BLACKLIST) || (!type.is(EntityTags.JAR_WHITELIST) && type.is(EntityTags.JAR_BLACKLIST))) {
                     player.sendSystemMessage(
                             Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
                     event.setCancellationResult(InteractionResult.FAIL);

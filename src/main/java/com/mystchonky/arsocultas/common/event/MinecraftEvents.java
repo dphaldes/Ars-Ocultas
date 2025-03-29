@@ -32,110 +32,112 @@ public class MinecraftEvents {
     @SubscribeEvent
     public static void crusherJob(PlayerInteractEvent.RightClickBlock event) {
         var player = event.getEntity();
-        var level = event.getLevel();
         var stack = event.getItemStack();
+        if (!(stack.getItem() instanceof SoulGemItem)) {
+            return;
+        }
+
+        var level = event.getLevel();
         var hit = event.getHitVec();
         var be = level.getBlockEntity(hit.getBlockPos());
         if (!(be instanceof MobJarTile jar)) {
             return;
         }
 
-        if (stack.getItem() instanceof SoulGemItem) {
-            var gemData = stack.get(DataComponents.ENTITY_DATA);
-            var jarEntity = jar.getEntity();
+        var gemData = stack.get(DataComponents.ENTITY_DATA);
+        var jarEntity = jar.getEntity();
 
-            if (gemData == null && jarEntity != null) {
-                if (!BaseConfig.SERVER.CONTAINMENT_JARS_SOUL_GEM_PICKUP.get()) {
-                    // We cancel regardless to prevent an entity dupe.
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                    return;
-                }
-
-                var type = jarEntity.getType();
-
-                if (type.is(EntityTags.JAR_RELEASE_BLACKLIST) || (!type.is(EntityTags.JAR_WHITELIST) && type.is(EntityTags.JAR_BLACKLIST))) {
-                    player.sendSystemMessage(
-                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                    return;
-                }
-
-                if (type.is(OccultismTags.Entities.SOUL_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.SOUL_GEM_ITEM.get())) {
-                    player.sendSystemMessage(
-                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                    return;
-                }
-
-                if (type.is(OccultismTags.Entities.TRINITY_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.TRINITY_GEM_ITEM.get())) {
-                    player.sendSystemMessage(
-                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                    return;
-                }
-
-                var entityData = new CompoundTag();
-                var id = jarEntity.getEncodeId();
-                if (id != null) {
-                    entityData.putString("id", id);
-                }
-
-                entityData = jarEntity.saveWithoutId(entityData);
-                stack.set(DataComponents.ENTITY_DATA, CustomData.of(entityData));
-                jar.removeEntity();
-
-                event.setCancellationResult(InteractionResult.SUCCESS);
+        if (gemData == null && jarEntity != null) {
+            if (!BaseConfig.SERVER.CONTAINMENT_JARS_SOUL_GEM_PICKUP.get()) {
+                // We cancel regardless to prevent an entity dupe.
+                event.setCancellationResult(InteractionResult.FAIL);
                 event.setCanceled(true);
-            } else if (gemData != null && jarEntity == null) {
-                if (!BaseConfig.SERVER.CONTAINMENT_JARS_SOUL_GEM_PLACE.get()) {
-                    return;
-                }
+                return;
+            }
 
-                CompoundTag entityData = stack.get(DataComponents.ENTITY_DATA).getUnsafe();
-                stack.remove(DataComponents.ENTITY_DATA);
+            var type = jarEntity.getType();
 
-                EntityType<?> type = EntityUtil.entityTypeFromNbt(entityData);
+            if (type.is(EntityTags.JAR_RELEASE_BLACKLIST) || (!type.is(EntityTags.JAR_WHITELIST) && type.is(EntityTags.JAR_BLACKLIST))) {
+                player.sendSystemMessage(
+                        Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
 
-                if (!type.is(EntityTags.JAR_WHITELIST) && type.is(EntityTags.JAR_BLACKLIST)) {
-                    player.sendSystemMessage(
-                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                }
+            if (type.is(OccultismTags.Entities.SOUL_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.SOUL_GEM_ITEM.get())) {
+                player.sendSystemMessage(
+                        Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
 
-                if (type.is(OccultismTags.Entities.SOUL_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.SOUL_GEM_ITEM.get())) {
-                    player.sendSystemMessage(
-                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                    return;
-                }
+            if (type.is(OccultismTags.Entities.TRINITY_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.TRINITY_GEM_ITEM.get())) {
+                player.sendSystemMessage(
+                        Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
 
-                if (type.is(OccultismTags.Entities.TRINITY_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.TRINITY_GEM_ITEM.get())) {
-                    player.sendSystemMessage(
-                            Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                    return;
-                }
+            var entityData = new CompoundTag();
+            var id = jarEntity.getEncodeId();
+            if (id != null) {
+                entityData.putString("id", id);
+            }
 
-                Entity entity = type.create(level);
-                if (entity == null) {
-                    event.setCancellationResult(InteractionResult.FAIL);
-                    event.setCanceled(true);
-                    return;
-                }
+            entityData = jarEntity.saveWithoutId(entityData);
+            stack.set(DataComponents.ENTITY_DATA, CustomData.of(entityData));
+            jar.removeEntity();
 
-                entity.load(entityData);
-                jar.setEntityData(entity);
+            event.setCancellationResult(InteractionResult.SUCCESS);
+            event.setCanceled(true);
+        } else if (gemData != null && jarEntity == null) {
+            if (!BaseConfig.SERVER.CONTAINMENT_JARS_SOUL_GEM_PLACE.get()) {
+                return;
+            }
 
-                event.setCancellationResult(InteractionResult.SUCCESS);
+            CompoundTag entityData = stack.get(DataComponents.ENTITY_DATA).getUnsafe();
+            stack.remove(DataComponents.ENTITY_DATA);
+
+            EntityType<?> type = EntityUtil.entityTypeFromNbt(entityData);
+
+            if (!type.is(EntityTags.JAR_WHITELIST) && type.is(EntityTags.JAR_BLACKLIST)) {
+                player.sendSystemMessage(
+                        Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                event.setCancellationResult(InteractionResult.FAIL);
                 event.setCanceled(true);
             }
+
+            if (type.is(OccultismTags.Entities.SOUL_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.SOUL_GEM_ITEM.get())) {
+                player.sendSystemMessage(
+                        Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
+
+            if (type.is(OccultismTags.Entities.TRINITY_GEM_DENY_LIST) && stack.getItem().equals(OccultismItems.TRINITY_GEM_ITEM.get())) {
+                player.sendSystemMessage(
+                        Component.translatable(stack.getDescriptionId() + ".message.entity_type_denied"));
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
+
+            Entity entity = type.create(level);
+            if (entity == null) {
+                event.setCancellationResult(InteractionResult.FAIL);
+                event.setCanceled(true);
+                return;
+            }
+
+            entity.load(entityData);
+            jar.setEntityData(entity);
+
+            event.setCancellationResult(InteractionResult.SUCCESS);
+            event.setCanceled(true);
         }
     }
 }

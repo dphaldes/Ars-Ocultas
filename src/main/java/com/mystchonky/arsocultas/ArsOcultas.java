@@ -29,6 +29,7 @@ public class ArsOcultas {
 
         // Register config files
         modContainer.registerConfig(ModConfig.Type.COMMON, BaseConfig.COMMON_SPEC, MODID + "/base-common.toml");
+        modContainer.registerConfig(ModConfig.Type.SERVER, BaseConfig.SERVER_SPEC, MODID + "/base-server.toml");
         modContainer.registerConfig(ModConfig.Type.CLIENT, BaseConfig.CLIENT_SPEC, MODID + "/base-client.toml");
 
         Registrar.init(modbus);

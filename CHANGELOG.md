@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.2] - 2025-08-02
+
+### Added
+
+- Added support for Crystallizer spirits for auto item transfer to nearby inventories.
+- Added Sacrificial Altar - New Block that can be used to sacrifice mobs from Mob jars. It consumes 5000 Source and must
+  be placed under the golden sacrificial bowl
+
+### Changed
+
+- Bumped minimum version of Occultism and Neoforge
+
 ## [2.1.0] - 2024-12-23
 
 ### Added

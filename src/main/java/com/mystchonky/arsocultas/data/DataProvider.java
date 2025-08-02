@@ -19,11 +19,14 @@ public class DataProvider {
         var output = generator.getPackOutput();
         var helper = event.getExistingFileHelper();
 
+        //common
+        event.createBlockAndItemTags(BlockTagsProvider::new, ItemTagsProvider::new);
         generator.addProvider(event.includeServer(), new ImbuementProvider(event.getLookupProvider(), generator));
         generator.addProvider(event.includeServer(), new EnchantingAppProvider(generator));
 
-        generator.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
+        // client
         generator.addProvider(event.includeClient(), new BlockStateProvider(output, helper));
+        generator.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
         generator.addProvider(event.includeClient(), new ItemModelProvider(output, helper));
     }
 

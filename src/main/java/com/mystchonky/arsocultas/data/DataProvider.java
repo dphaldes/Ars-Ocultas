@@ -36,6 +36,7 @@ public class DataProvider {
         generator.addProvider(event.includeClient(), new BlockStateProvider(output, helper));
         generator.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
         generator.addProvider(event.includeClient(), new ItemModelProvider(output, helper));
+//        generator.addProvider(event.includeClient(), new BookProvider(generator, provider));
     }
 
 }

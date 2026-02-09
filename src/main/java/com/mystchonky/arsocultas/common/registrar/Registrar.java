@@ -13,7 +13,7 @@ import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 public class Registrar {
 
     public static void init(IEventBus modbus) {
-        ItemRegistrar.register(modbus);
+//        ItemRegistrar.register(modbus);
         BlockRegistrar.register(modbus);
         BlockEntityRegistrar.register(modbus);
         MenuTypeRegistrar.register(modbus);

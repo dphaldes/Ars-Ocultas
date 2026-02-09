@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.2.1] - 2026-02-06
+
+### Fixed
+
+- Fix sacrifical altar loot table. It should drop as an item when broken.
+
 ## [2.2.0] - 2025-08-02
 
 ### Added

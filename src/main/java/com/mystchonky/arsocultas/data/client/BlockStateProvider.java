@@ -2,7 +2,7 @@ package com.mystchonky.arsocultas.data.client;
 
 
 import com.mystchonky.arsocultas.ArsOcultas;
-import com.mystchonky.arsocultas.common.registrar.BlockRegistrar;
+import com.mystchonky.arsocultas.init.BlockRegistrar;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 

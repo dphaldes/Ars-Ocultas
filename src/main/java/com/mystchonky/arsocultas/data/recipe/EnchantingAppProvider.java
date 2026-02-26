@@ -8,8 +8,8 @@ import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
 import com.klikli_dev.occultism.registry.OccultismBlocks;
 import com.klikli_dev.occultism.registry.OccultismItems;
-import com.mystchonky.arsocultas.common.registrar.BlockRegistrar;
 import com.mystchonky.arsocultas.data.DataProvider;
+import com.mystchonky.arsocultas.init.BlockRegistrar;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 

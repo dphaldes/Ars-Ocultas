@@ -1,7 +1,7 @@
 package com.mystchonky.arsocultas.data;
 
 import com.mystchonky.arsocultas.ArsOcultas;
-import com.mystchonky.arsocultas.common.registrar.BlockRegistrar;
+import com.mystchonky.arsocultas.init.BlockRegistrar;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;

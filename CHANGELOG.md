@@ -1,5 +1,11 @@
 # Changelog
 
+## [2.3.0] - 2026-02-26
+
+### Added
+
+- Add item transfer support of traders in spirit jars
+
 ## [2.2.1] - 2026-02-06
 
 ### Fixed

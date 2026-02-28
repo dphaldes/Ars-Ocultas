@@ -80,7 +80,6 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
 
             // Update job
             spiritJob.update();
-            tile.updateBlock();
         });
     }
 

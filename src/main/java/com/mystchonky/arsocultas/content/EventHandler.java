@@ -15,7 +15,7 @@ import com.klikli_dev.occultism.registry.OccultismTags;
 import com.klikli_dev.occultism.util.EntityUtil;
 import com.mystchonky.arsocultas.ArsOcultas;
 import com.mystchonky.arsocultas.Config;
-import com.mystchonky.arsocultas.content.spirit_jar.SpiritBehaviour;
+import com.mystchonky.arsocultas.content.spirit_jar.SpiritJarBehaviour;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
@@ -44,7 +44,7 @@ public class EventHandler {
         if (entity instanceof SpiritEntity spirit) {
             if (level.getBlockEntity(spirit.blockPosition()) instanceof MobJarTile jar) {
                 jar.dispatchBehavior(behavior -> {
-                    if (behavior instanceof SpiritBehaviour<? extends SpiritEntity> spiritBehaviour) {
+                    if (behavior instanceof SpiritJarBehaviour<? extends SpiritEntity> spiritBehaviour) {
                         var remainder = spiritBehaviour.tryItemNearbyTransfer(jar, level, event.getResult());
                         event.setResult(remainder);
                     }
@@ -60,7 +60,7 @@ public class EventHandler {
         if (entity instanceof SpiritEntity spirit) {
             if (level.getBlockEntity(spirit.blockPosition()) instanceof MobJarTile jar) {
                 jar.dispatchBehavior(behavior -> {
-                    if (behavior instanceof SpiritBehaviour<? extends SpiritEntity> spiritBehaviour) {
+                    if (behavior instanceof SpiritJarBehaviour<? extends SpiritEntity> spiritBehaviour) {
                         var remainder = spiritBehaviour.tryItemNearbyTransfer(jar, level, event.getResult());
                         event.setResult(remainder);
                     }
@@ -76,7 +76,7 @@ public class EventHandler {
         if (entity instanceof SpiritEntity spirit) {
             if (level.getBlockEntity(spirit.blockPosition()) instanceof MobJarTile jar) {
                 jar.dispatchBehavior(behavior -> {
-                    if (behavior instanceof SpiritBehaviour<? extends SpiritEntity> spiritBehaviour) {
+                    if (behavior instanceof SpiritJarBehaviour<? extends SpiritEntity> spiritBehaviour) {
                         var remainder = spiritBehaviour.tryItemNearbyTransfer(jar, level, event.getResult());
                         event.setResult(remainder);
                     }
@@ -92,7 +92,7 @@ public class EventHandler {
         if (entity instanceof SpiritEntity spirit) {
             if (level.getBlockEntity(spirit.blockPosition()) instanceof MobJarTile jar) {
                 jar.dispatchBehavior(behavior -> {
-                    if (behavior instanceof SpiritBehaviour<? extends SpiritEntity> spiritBehaviour) {
+                    if (behavior instanceof SpiritJarBehaviour<? extends SpiritEntity> spiritBehaviour) {
                         var remainder = spiritBehaviour.tryItemNearbyTransfer(jar, level, event.getResult());
                         event.setResult(remainder);
                     }

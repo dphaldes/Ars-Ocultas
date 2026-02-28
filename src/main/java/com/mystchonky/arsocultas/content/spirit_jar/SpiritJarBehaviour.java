@@ -14,6 +14,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.MenuProvider;
@@ -29,7 +30,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
-public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
+public class SpiritJarBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
 
     private static final String TRANSLATION_KEY_BASE = "gui." + Occultism.MODID + ".spirit";
 
@@ -100,11 +101,18 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
     @Override
     public void getTooltip(MobJarTile tile, List<Component> tooltips) {
         super.getTooltip(tile, tooltips);
-        var job = entityFromJar(tile).getJobID();
+        var spirit = entityFromJar(tile);
+        var job = spirit.getJobID();
         if (!StringUtils.isBlank(job)) {
             job = job.replace(":", ".");
             String jobText = I18n.get(TRANSLATION_KEY_BASE + ".job", I18n.get("job." + job));
             tooltips.add(Component.translatable(jobText).withStyle(ChatFormatting.GOLD));
+        }
+        tooltips.add(spirit.getDisplayName());
+        if (spirit.hasCustomName()) {
+            MutableComponent name = spirit.getType().getDescription().copy();
+            name.withStyle(ChatFormatting.GRAY);
+            tooltips.add(name);
         }
     }
 

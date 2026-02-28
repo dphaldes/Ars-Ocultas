@@ -6,7 +6,7 @@ import com.hollingsworth.arsnouveau.api.registry.GlyphRegistry;
 import com.hollingsworth.arsnouveau.api.registry.JarBehaviorRegistry;
 import com.hollingsworth.arsnouveau.api.spell.AbstractSpellPart;
 import com.klikli_dev.occultism.registry.OccultismEntities;
-import com.mystchonky.arsocultas.content.spirit_jar.SpiritBehaviour;
+import com.mystchonky.arsocultas.content.spirit_jar.SpiritJarBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,10 +44,10 @@ public class IntegrationRegistrar {
     }
 
     public static void registerJarBehaviours() {
-        JarBehaviorRegistry.register(OccultismEntities.FOLIOT.get(), new SpiritBehaviour<>());
-        JarBehaviorRegistry.register(OccultismEntities.DJINNI.get(), new SpiritBehaviour<>());
-        JarBehaviorRegistry.register(OccultismEntities.AFRIT.get(), new SpiritBehaviour<>());
-        JarBehaviorRegistry.register(OccultismEntities.MARID.get(), new SpiritBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.FOLIOT.get(), new SpiritJarBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.DJINNI.get(), new SpiritJarBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.AFRIT.get(), new SpiritJarBehaviour<>());
+        JarBehaviorRegistry.register(OccultismEntities.MARID.get(), new SpiritJarBehaviour<>());
     }
 
 }

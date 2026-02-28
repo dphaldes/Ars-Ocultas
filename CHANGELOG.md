@@ -1,16 +1,21 @@
 # Changelog
 
+## [2.3.1] - 2026-02-27
+
+### Added
+- Added Chinese (zh_cn) translation (By @ChujikYahus).
+
 ## [2.3.0] - 2026-02-26
 
 ### Added
 
-- Add item transfer support of traders in spirit jars
+- Add item transfer support of traders in spirit jars (By @antessial).
 
 ## [2.2.1] - 2026-02-06
 
 ### Fixed
 
-- Fix sacrifical altar loot table. It should drop as an item when broken.
+- Fix sacrificial altar loot table. It should drop as an item when broken.
 
 ## [2.2.0] - 2025-08-02
 

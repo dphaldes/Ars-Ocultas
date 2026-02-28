@@ -5,10 +5,13 @@ import com.hollingsworth.arsnouveau.api.item.inv.InventoryManager;
 import com.hollingsworth.arsnouveau.api.mob_jar.JarBehavior;
 import com.hollingsworth.arsnouveau.api.util.InvUtil;
 import com.hollingsworth.arsnouveau.common.block.tile.MobJarTile;
+import com.klikli_dev.occultism.Occultism;
 import com.klikli_dev.occultism.api.OccultismAPI;
 import com.klikli_dev.occultism.common.entity.job.CleanerJob;
 import com.klikli_dev.occultism.common.entity.job.SpiritJob;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -22,10 +25,13 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.items.ItemHandlerHelper;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
 public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
+
+    private static final String TRANSLATION_KEY_BASE = "gui." + Occultism.MODID + ".spirit";
 
     @Override
     public void use(BlockState state, Level world, BlockPos pos, Player player, InteractionHand handIn, BlockHitResult hit, MobJarTile tile) {
@@ -94,6 +100,12 @@ public class SpiritBehaviour<T extends SpiritEntity> extends JarBehavior<T> {
     @Override
     public void getTooltip(MobJarTile tile, List<Component> tooltips) {
         super.getTooltip(tile, tooltips);
+        var job = entityFromJar(tile).getJobID();
+        if (!StringUtils.isBlank(job)) {
+            job = job.replace(":", ".");
+            String jobText = I18n.get(TRANSLATION_KEY_BASE + ".job", I18n.get("job." + job));
+            tooltips.add(Component.translatable(jobText).withStyle(ChatFormatting.GOLD));
+        }
     }
 
     public void openScreen(Player playerEntity, SpiritEntity spirit, MobJarTile tile) {

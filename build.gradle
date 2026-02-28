@@ -134,7 +134,6 @@ repositories {
 dependencies {
     implementation "com.hollingsworth.ars_nouveau:ars_nouveau-${mc_version}:${ars_version}"
     implementation "com.klikli_dev:occultism-1.21.1-neoforge:${occultism_version}"
-    implementation "net.tslat.smartbrainlib:SmartBrainLib-neoforge-1.21.1:${smartbrainlib}"
 
     compileOnly "mezz.jei:jei-1.21-common-api:${jei_version}"
     compileOnly "mezz.jei:jei-1.21-neoforge-api:${jei_version}"
@@ -142,6 +141,9 @@ dependencies {
 
     compileOnly "top.theillusivec4.curios:curios-neoforge:${curios}+${mc_version}:api"
     localRuntime "top.theillusivec4.curios:curios-neoforge:${curios}+${mc_version}"
+
+    compileOnly "software.bernie.geckolib:geckolib-neoforge-1.21.1:${geckolib}"
+    implementation "net.tslat.smartbrainlib:SmartBrainLib-neoforge-1.21.1:${smartbrainlib}"
 }
 
 tasks.withType(ProcessResources).configureEach {

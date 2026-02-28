@@ -2,7 +2,8 @@ package com.mystchonky.arsocultas.data;
 
 
 import com.mystchonky.arsocultas.ArsOcultas;
-import com.mystchonky.arsocultas.common.registrar.LangRegistrar;
+import com.mystchonky.arsocultas.init.BlockRegistrar;
+import com.mystchonky.arsocultas.init.LangRegistrar;
 import net.minecraft.data.PackOutput;
 
 public class LanguageProvider extends net.neoforged.neoforge.common.data.LanguageProvider {
@@ -13,5 +14,6 @@ public class LanguageProvider extends net.neoforged.neoforge.common.data.Languag
     @Override
     protected void addTranslations() {
         LangRegistrar.entries.forEach(this::add);
+        add(BlockRegistrar.ALTAR.get(), "Sacrificial Altar");
     }
 }

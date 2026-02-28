@@ -3,9 +3,13 @@ package com.mystchonky.arsocultas.data.recipe;
 import com.hollingsworth.arsnouveau.common.crafting.recipes.EnchantingApparatusRecipe;
 import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeBuilder;
 import com.hollingsworth.arsnouveau.common.datagen.ApparatusRecipeProvider;
+import com.hollingsworth.arsnouveau.common.lib.LibBlockNames;
+import com.hollingsworth.arsnouveau.setup.registry.BlockRegistry;
 import com.hollingsworth.arsnouveau.setup.registry.ItemsRegistry;
+import com.klikli_dev.occultism.registry.OccultismBlocks;
 import com.klikli_dev.occultism.registry.OccultismItems;
 import com.mystchonky.arsocultas.data.DataProvider;
+import com.mystchonky.arsocultas.init.BlockRegistrar;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataGenerator;
 
@@ -26,6 +30,21 @@ public class EnchantingAppProvider extends ApparatusRecipeProvider {
                 .withPedestalItem(1, OccultismItems.DEMONS_DREAM_ESSENCE)
                 .withResult(OccultismItems.SPIRIT_ATTUNED_GEM)
                 .withSourceCost(500)
+                .build()
+        );
+
+        recipes.add(builder()
+                .withReagent(OccultismBlocks.GOLDEN_SACRIFICIAL_BOWL)
+                .withPedestalItem(OccultismItems.SILVER_INGOT)
+                .withPedestalItem(ItemsRegistry.DRYGMY_SHARD)
+                .withPedestalItem(OccultismItems.SILVER_INGOT)
+                .withPedestalItem(BlockRegistry.getBlock(LibBlockNames.SOURCESTONE))
+                .withPedestalItem(OccultismItems.SILVER_INGOT)
+                .withPedestalItem(BlockRegistry.MOB_JAR)
+                .withPedestalItem(OccultismItems.SILVER_INGOT)
+                .withPedestalItem(BlockRegistry.getBlock(LibBlockNames.SOURCESTONE))
+                .withResult(BlockRegistrar.ALTAR)
+                .withSourceCost(5000)
                 .build()
         );
 

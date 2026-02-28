@@ -1,12 +1,18 @@
 package com.mystchonky.arsocultas.data;
 
 import com.mystchonky.arsocultas.ArsOcultas;
+import com.mystchonky.arsocultas.data.client.BlockStateProvider;
+import com.mystchonky.arsocultas.data.client.ItemModelProvider;
 import com.mystchonky.arsocultas.data.recipe.EnchantingAppProvider;
 import com.mystchonky.arsocultas.data.recipe.ImbuementProvider;
-import net.minecraft.data.PackOutput;
+import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+
+import java.util.List;
+import java.util.Set;
 
 @EventBusSubscriber(modid = ArsOcultas.MODID, bus = EventBusSubscriber.Bus.MOD)
 public class DataProvider {
@@ -14,13 +20,23 @@ public class DataProvider {
 
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
-        net.minecraft.data.DataGenerator gen = event.getGenerator();
-        PackOutput output = gen.getPackOutput();
+        var generator = event.getGenerator();
+        var output = generator.getPackOutput();
+        var helper = event.getExistingFileHelper();
+        var provider = event.getLookupProvider();
 
-        gen.addProvider(event.includeServer(), new ImbuementProvider(event.getLookupProvider(), gen));
-        gen.addProvider(event.includeServer(), new EnchantingAppProvider(gen));
+        //common
+        event.createBlockAndItemTags(BlockTagsProvider::new, ItemTagsProvider::new);
+        generator.addProvider(event.includeServer(), new ImbuementProvider(event.getLookupProvider(), generator));
+        generator.addProvider(event.includeServer(), new EnchantingAppProvider(generator));
+        generator.addProvider(event.includeServer(), new LootTableProvider(output, Set.of(),
+                List.of(new LootTableProvider.SubProviderEntry(BlockLootProvider::new, LootContextParamSets.BLOCK)), provider));
 
-        gen.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
+        // client
+        generator.addProvider(event.includeClient(), new BlockStateProvider(output, helper));
+        generator.addProvider(event.includeClient(), new LanguageProvider(output, "en_us"));
+        generator.addProvider(event.includeClient(), new ItemModelProvider(output, helper));
+//        generator.addProvider(event.includeClient(), new BookProvider(generator, provider));
     }
 
 }

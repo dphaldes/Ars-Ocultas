@@ -1,5 +1,15 @@
 # Changelog
 
+
+## [2.4.0] - 2026-02-28
+
+### Added
+
+- Added tooltips to containment jars that hold Occultism spirits.
+  - These tooltips are shown both on the containment jar item and inworld when looking at the jar.
+- Added support for interactions with Occultism spirit gems. (Thanks @Qther)
+  - You can now insert and remove mobs directly from the containment jar.
+
 ## [2.3.1] - 2026-02-27
 
 ### Added

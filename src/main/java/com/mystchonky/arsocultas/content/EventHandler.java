@@ -105,7 +105,8 @@ public class EventHandler {
     public static void itemTooltips(ItemTooltipEvent event) {
         var stack = event.getItemStack();
         var tooltips = event.getToolTip();
-        if (MobJarItem.fromItem(stack, event.getContext().level()) instanceof SpiritEntity spirit) {
+        var level = event.getContext().level();
+        if (level != null && MobJarItem.fromItem(stack, level) instanceof SpiritEntity spirit) {
             var job = spirit.getJobID();
             if (!StringUtils.isBlank(job)) {
                 job = job.replace(":", ".");

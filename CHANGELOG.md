@@ -1,8 +1,17 @@
 # Changelog
 
+
+## [2.5.0] - 2026-07-26
+
+### Added
+- Fragile Soul gems now break after use like intended [gh!16](https://github.com/dphaldes/Ars-Ocultas/issues/16)
+### Fixed
+- Fixed a runtime crash because of occultism updates. [gh!18](https://github.com/dphaldes/Ars-Ocultas/issues/18)
+
 ## [2.4.1] - 2026-04-28
 
 ### Fixed
+
 - Add null check levels in tooltips. [see report](https://github.com/baileyholl/Ars-Nouveau/issues/2128)
 
 ## [2.4.0] - 2026-02-28

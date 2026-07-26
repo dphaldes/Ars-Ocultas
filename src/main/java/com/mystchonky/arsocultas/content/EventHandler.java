@@ -21,9 +21,13 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -134,6 +138,7 @@ public class EventHandler {
         var gemData = stack.get(DataComponents.ENTITY_DATA);
         var jarEntity = jar.getEntity();
 
+        // empty gem - jar full
         if (gemData == null && jarEntity != null) {
             if (!Config.SERVER.CONTAINMENT_JARS_SOUL_GEM_PICKUP.get()) {
                 // We cancel regardless to prevent an entity dupe.
@@ -180,7 +185,9 @@ public class EventHandler {
 
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
-        } else if (gemData != null && jarEntity == null) {
+        }
+        // full gem - empty jar
+        else if (gemData != null && jarEntity == null) {
             if (!Config.SERVER.CONTAINMENT_JARS_SOUL_GEM_PLACE.get()) {
                 return;
             }
@@ -225,6 +232,13 @@ public class EventHandler {
 
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
+
+            if (stack.getItem().equals(OccultismItems.FRAGILE_SOUL_GEM_ITEM.get())) {
+                player.setItemInHand(InteractionHand.MAIN_HAND, ItemStack.EMPTY);
+                level.playSound(null, hit.getBlockPos(), SoundEvents.GLASS_BREAK, SoundSource.PLAYERS, 1f,
+                        1 + 0.5f * player.getRandom().nextFloat());
+            }
+            player.inventoryMenu.broadcastChanges();
         }
     }
 

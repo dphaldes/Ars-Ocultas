@@ -14,7 +14,7 @@ public class SpiritScreenWrapper {
             @Override
             public void setIsBlacklist(boolean isBlacklist) {
                 super.setIsBlacklist(isBlacklist);
-                Network.sendToServer(new MessageSpiritSetFilter(isBlacklist, spirit.blockPosition()));
+                Network.sendToServer(new MessageSpiritSetFilter(isBlacklist, spirit.getEntity().blockPosition()));
             }
         };
     }

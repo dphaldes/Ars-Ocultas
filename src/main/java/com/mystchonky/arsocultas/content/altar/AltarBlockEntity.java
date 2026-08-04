@@ -28,7 +28,7 @@ public class AltarBlockEntity extends BlockEntity implements TickingBlockEntity 
             if (recipe == null || bowl.sacrificeFulfilled())
                 return;
 
-            for (BlockPos b : BlockPos.withinManhattan(getBlockPos().above(3), 10, 10, 6)) {
+            for (BlockPos b : BlockPos.withinManhattan(getBlockPos().above(3), 10, 6, 10)) {
                 if (level.getBlockEntity(b) instanceof MobJarTile mobJarTile && mobJarTile.getEntity() instanceof LivingEntity entity) {
                     if (recipe.value().getRitual().isValidSacrifice(entity)) {
                         if (SourceUtil.hasSourceNearby(worldPosition, level, 10, COST)) {

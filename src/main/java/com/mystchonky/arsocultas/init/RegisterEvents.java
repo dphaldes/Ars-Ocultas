@@ -31,6 +31,13 @@ public class RegisterEvents {
                     return null;
                 }
         );
+        event.registerBlockEntity(
+                Capabilities.ItemHandler.BLOCK,
+                BlockEntityRegistrar.ALTAR.get(),
+                (blockEntity, side) -> {
+                    return blockEntity.getCapability();
+                }
+        );
     }
 
     @SubscribeEvent

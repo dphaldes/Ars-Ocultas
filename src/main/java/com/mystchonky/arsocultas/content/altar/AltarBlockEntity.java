@@ -20,12 +20,14 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.items.ItemStackHandler;
 
 public class AltarBlockEntity extends BaseContainerBlockEntity implements TickingBlockEntity, Container {
     private static final int COST = 5000;
     private static final int CONTAINER_SIZE = 27;
     private static final int SLOT_SIZE = 1;
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
+    private ItemStackHandler capability = new ItemStackHandler(items);
 
     public AltarBlockEntity(BlockPos pos, BlockState blockState) {
         super(BlockEntityRegistrar.ALTAR.get(), pos, blockState);
@@ -116,4 +118,7 @@ public class AltarBlockEntity extends BaseContainerBlockEntity implements Tickin
         ContainerHelper.loadAllItems(tag, this.items, registries);
     }
 
+    public ItemStackHandler getCapability() {
+        return capability;
+    }
 }

@@ -5,11 +5,13 @@ import com.klikli_dev.occultism.common.container.spirit.SpiritContainer;
 import com.klikli_dev.occultism.common.container.spirit.SpiritTransporterContainer;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
 import com.mystchonky.arsocultas.ArsOcultas;
+import com.mystchonky.arsocultas.content.altar.AltarMenu;
 import com.mystchonky.arsocultas.content.spirit_jar.SpiritMenuWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -37,6 +39,12 @@ public class MenuTypeRegistrar {
                                 return SpiritMenuWrapper.wrappedSpiritTransporter(windowId, inv, (SpiritEntity) tile.getEntity());
                             }));
 
+    public static final Supplier<MenuType<AltarMenu>> ALTAR_MENU =
+            MENU_TYPES.register("altar_menu", () -> IMenuTypeExtension.create((windowId, inv, data) -> {
+                BlockPos pos = data.readBlockPos();
+                BlockEntity blockEntity = inv.player.level().getBlockEntity(pos);
+                return new AltarMenu(windowId, inv, blockEntity);
+            }));
 
     public static void register(IEventBus modbus) {
         MENU_TYPES.register(modbus);

@@ -5,6 +5,7 @@ import com.klikli_dev.occultism.client.gui.spirit.SpiritGui;
 import com.klikli_dev.occultism.common.container.spirit.SpiritContainer;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
 import com.mystchonky.arsocultas.ArsOcultas;
+import com.mystchonky.arsocultas.content.altar.AltarScreen;
 import com.mystchonky.arsocultas.content.spirit_jar.MessageSpiritSetFilter;
 import com.mystchonky.arsocultas.content.spirit_jar.SpiritScreenWrapper;
 import com.mystchonky.arsocultas.foundation.network.MessageHandler;
@@ -36,6 +37,7 @@ public class RegisterEvents {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(MenuTypeRegistrar.SPIRIT_WRAPPER.get(), SpiritGui<SpiritContainer>::new);
         event.register(MenuTypeRegistrar.SPIRIT_TRANSPORT_WRAPPER.get(), SpiritScreenWrapper::wrapTransporterGui);
+        event.register(MenuTypeRegistrar.ALTAR_MENU.get(), AltarScreen::new);
     }
 
     @SubscribeEvent

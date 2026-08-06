@@ -10,29 +10,25 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 
 public class AltarMenu extends AbstractContainerMenu {
     public final AltarBlockEntity blockEntity;
     public final Level level;
 
-    public AltarMenu(int containerId, Inventory inv, BlockEntity blockEntity) {
-        super(MenuTypeRegistrar.ALTAR_MENU.get(), containerId);
-        this.blockEntity = ((AltarBlockEntity) blockEntity);
+    public AltarMenu(int containerId, Inventory inv, AltarBlockEntity blockEntity) {
+        super(MenuTypeRegistrar.ALTAR.get(), containerId);
+        this.blockEntity = blockEntity;
         this.level = inv.player.level();
 
-        addBlockentityInventory(this.blockEntity);
-        addPlayerInventory(inv);
-        addPlayerHotbar(inv);
+        addInventory(this.blockEntity);
     }
 
     @Override
     public ItemStack quickMoveStack(Player player, int index) {
-        System.out.println(index);
         int CONTAINER_SLOTS = blockEntity.getContainerSize();
         Slot slot = this.slots.get(index);
         ItemStack stack = ItemStack.EMPTY;
-        if (slot != null && slot.hasItem()) {
+        if (slot.hasItem()) {
             ItemStack itemStack = slot.getItem();
             stack = itemStack.copy();
             if (index < CONTAINER_SLOTS) {
@@ -59,25 +55,26 @@ public class AltarMenu extends AbstractContainerMenu {
                 player, BlockRegistrar.ALTAR.get());
     }
 
-    private void addBlockentityInventory(Container inv) {
+    private void addInventory(Container inventory) {
+        // altar
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(inv, l + i * 9, 8 + l * 18, 18 + i * 18));
+                addSlot(new Slot(inventory, l + i * 9, 8 + l * 18, 18 + i * 18));
             }
         }
-    }
 
-    private void addPlayerInventory(Inventory playerInventory) {
+        // player inventory
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
+                addSlot(new Slot(inventory, l + i * 9 + 9, 8 + l * 18, 84 + i * 18));
             }
         }
-    }
 
-    private void addPlayerHotbar(Inventory playerInventory) {
+        // player hotbar
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 142));
+            addSlot(new Slot(inventory, i, 8 + i * 18, 142));
         }
     }
+
 }
+

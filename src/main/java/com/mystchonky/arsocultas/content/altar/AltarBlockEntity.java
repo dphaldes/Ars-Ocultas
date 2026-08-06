@@ -5,6 +5,7 @@ import com.hollingsworth.arsnouveau.common.block.tile.MobJarTile;
 import com.klikli_dev.occultism.common.blockentity.GoldenSacrificialBowlBlockEntity;
 import com.mystchonky.arsocultas.foundation.TickingBlockEntity;
 import com.mystchonky.arsocultas.init.BlockEntityRegistrar;
+import com.mystchonky.arsocultas.init.BlockRegistrar;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -27,7 +28,7 @@ public class AltarBlockEntity extends BaseContainerBlockEntity implements Tickin
     private static final int CONTAINER_SIZE = 27;
     private static final int SLOT_SIZE = 1;
     private NonNullList<ItemStack> items = NonNullList.withSize(CONTAINER_SIZE, ItemStack.EMPTY);
-    private ItemStackHandler capability = new ItemStackHandler(items);
+    private final ItemStackHandler itemHandler = new ItemStackHandler(items);
 
     public AltarBlockEntity(BlockPos pos, BlockState blockState) {
         super(BlockEntityRegistrar.ALTAR.get(), pos, blockState);
@@ -48,7 +49,7 @@ public class AltarBlockEntity extends BaseContainerBlockEntity implements Tickin
                     if (level.getBlockEntity(b) instanceof MobJarTile mobJarTile && mobJarTile.getEntity() instanceof LivingEntity entity) {
                         if (recipe.value().getRitual().isValidSacrifice(entity)) {
                             if (SourceUtil.hasSourceNearby(worldPosition, level, 10, COST)) {
-                                SourceUtil.takeSourceWithParticles(worldPosition, level, 10, COST);
+                                SourceUtil.takeSourceMultipleWithParticles(worldPosition, level, 10, COST);
                                 bowl.notifySacrifice(null);
                             }
 
@@ -62,8 +63,9 @@ public class AltarBlockEntity extends BaseContainerBlockEntity implements Tickin
                     ItemStack stack = getItem(slot);
                     if (recipe.value().getItemToUse().test(stack)) {
                         if (SourceUtil.hasSourceNearby(worldPosition, level, 10, COST)) {
-                            SourceUtil.takeSourceWithParticles(worldPosition, level, 10, COST);
+                            SourceUtil.takeSourceMultipleWithParticles(worldPosition, level, 10, COST);
                             bowl.notifyItemUse(null);
+                            // TODO: FIND A WAY TO CONSUME ITEM OR REACT WITH A STATE CHANGE
                         }
                         return;
                     }
@@ -76,11 +78,13 @@ public class AltarBlockEntity extends BaseContainerBlockEntity implements Tickin
 
     @Override
     protected Component getDefaultName() {
-        return Component.translatable("block.ars_ocultas.altar");
+        return Component.translatable(BlockRegistrar.ALTAR.get().getDescriptionId());
     }
 
     @Override
-    public int getMaxStackSize() {return SLOT_SIZE;}
+    public int getMaxStackSize() {
+        return SLOT_SIZE;
+    }
 
     @Override
     protected NonNullList<ItemStack> getItems() {
@@ -118,7 +122,7 @@ public class AltarBlockEntity extends BaseContainerBlockEntity implements Tickin
         ContainerHelper.loadAllItems(tag, this.items, registries);
     }
 
-    public ItemStackHandler getCapability() {
-        return capability;
+    public ItemStackHandler getItemHandler() {
+        return itemHandler;
     }
 }

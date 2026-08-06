@@ -16,7 +16,7 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 
-@EventBusSubscriber(modid = ArsOcultas.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ArsOcultas.MODID)
 public class RegisterEvents {
 
     @SubscribeEvent
@@ -34,9 +34,7 @@ public class RegisterEvents {
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 BlockEntityRegistrar.ALTAR.get(),
-                (blockEntity, side) -> {
-                    return blockEntity.getCapability();
-                }
+                (blockEntity, side) -> blockEntity.getItemHandler()
         );
     }
 
@@ -44,7 +42,7 @@ public class RegisterEvents {
     public static void registerScreens(RegisterMenuScreensEvent event) {
         event.register(MenuTypeRegistrar.SPIRIT_WRAPPER.get(), SpiritGui<SpiritContainer>::new);
         event.register(MenuTypeRegistrar.SPIRIT_TRANSPORT_WRAPPER.get(), SpiritScreenWrapper::wrapTransporterGui);
-        event.register(MenuTypeRegistrar.ALTAR_MENU.get(), AltarScreen::new);
+        event.register(MenuTypeRegistrar.ALTAR.get(), AltarScreen::new);
     }
 
     @SubscribeEvent

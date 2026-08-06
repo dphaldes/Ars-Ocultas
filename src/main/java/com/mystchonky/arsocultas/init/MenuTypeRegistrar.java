@@ -5,13 +5,12 @@ import com.klikli_dev.occultism.common.container.spirit.SpiritContainer;
 import com.klikli_dev.occultism.common.container.spirit.SpiritTransporterContainer;
 import com.klikli_dev.occultism.common.entity.spirit.SpiritEntity;
 import com.mystchonky.arsocultas.ArsOcultas;
+import com.mystchonky.arsocultas.content.altar.AltarBlockEntity;
 import com.mystchonky.arsocultas.content.altar.AltarMenu;
 import com.mystchonky.arsocultas.content.spirit_jar.SpiritMenuWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.extensions.IMenuTypeExtension;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -24,8 +23,8 @@ public class MenuTypeRegistrar {
     public static final Supplier<MenuType<SpiritContainer>> SPIRIT_WRAPPER = MENU_TYPES.register("spirit_wrapper",
             () -> IMenuTypeExtension
                     .create((windowId, inv, data) -> {
-                        BlockPos pos = data.readBlockPos();
-                        MobJarTile tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(pos);
+                        var blockPos = data.readBlockPos();
+                        var tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(blockPos);
                         return SpiritMenuWrapper.wrappedSpirit(windowId, inv, (SpiritEntity) tile.getEntity());
                     }));
 
@@ -34,15 +33,15 @@ public class MenuTypeRegistrar {
             MENU_TYPES.register("spirit_transport_wrapper",
                     () -> IMenuTypeExtension
                             .create((windowId, inv, data) -> {
-                                BlockPos pos = data.readBlockPos();
-                                MobJarTile tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(pos);
+                                var blockPos = data.readBlockPos();
+                                var tile = (MobJarTile) Minecraft.getInstance().level.getBlockEntity(blockPos);
                                 return SpiritMenuWrapper.wrappedSpiritTransporter(windowId, inv, (SpiritEntity) tile.getEntity());
                             }));
 
-    public static final Supplier<MenuType<AltarMenu>> ALTAR_MENU =
-            MENU_TYPES.register("altar_menu", () -> IMenuTypeExtension.create((windowId, inv, data) -> {
-                BlockPos pos = data.readBlockPos();
-                BlockEntity blockEntity = inv.player.level().getBlockEntity(pos);
+    public static final Supplier<MenuType<AltarMenu>> ALTAR =
+            MENU_TYPES.register("altar", () -> IMenuTypeExtension.create((windowId, inv, data) -> {
+                var blockPos = data.readBlockPos();
+                var blockEntity = (AltarBlockEntity) inv.player.level().getBlockEntity(blockPos);
                 return new AltarMenu(windowId, inv, blockEntity);
             }));
 

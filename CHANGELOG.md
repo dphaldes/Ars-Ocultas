@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.6.1] - 2026-08-05
+### Fixed
+- Fix crash related to Sacrificial Altar. [gh!23](https://github.com/dphaldes/Ars-Ocultas/issues/23)
+
 ## [2.6.0] - 2026-08-05
 ### Added
 - Sacrificial Altar now has a screen. You can now place items inside the inventory that trigger rituals. By @Poseidon13856 [gh!22](https://github.com/dphaldes/Ars-Ocultas/pull/22)

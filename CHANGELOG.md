@@ -1,5 +1,9 @@
 # Changelog
 
+## [2.6.2] - 2026-10-24
+### Added
+- Migrated to new documentation
+
 ## [2.6.1] - 2026-08-05
 ### Fixed
 - Fix crash related to Sacrificial Altar. [gh!23](https://github.com/dphaldes/Ars-Ocultas/issues/23)

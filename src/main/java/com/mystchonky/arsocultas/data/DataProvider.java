@@ -14,7 +14,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import java.util.List;
 import java.util.Set;
 
-@EventBusSubscriber(modid = ArsOcultas.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = ArsOcultas.MODID)
 public class DataProvider {
     public static String root = ArsOcultas.MODID;
 

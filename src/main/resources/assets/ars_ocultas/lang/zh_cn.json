@@ -1,3 +1,12 @@
 {
-  "block.ars_ocultas.altar": "献祭祭坛"
+  "block.ars_ocultas.altar": "献祭祭坛",
+  "ars_ocultas.page.gem": "魔灵同调宝石",
+  "ars_ocultas.page1.gem": "缺少钻石时的替代配方。",
+  "ars_ocultas.page.spirit_jar": "魔灵罐",
+  "ars_ocultas.page1.spirit_jar": "神秘学的魔灵能在收容罐中工作。它们的行为一如往常，同时不会灵髓衰退，非常适合自动化！魔灵罐会自动捡起以自身为中心7x7范围内符合过滤标准的任意物品（例如，碎矿者魔灵会自行捡起它能处理的所有矿石）。",
+  "ars_ocultas.page2.spirit_jar": "也可用漏斗和星宝石兽将物品送入收容罐（管道也应该没问题！）。玩家还可直接用物品直接右击收容罐。$(br2)罐中魔灵的行为不会改变，也即$(thing)碎矿者魔灵$()会自动处理并向某一方向弹出产物。",
+  "ars_ocultas.page3.spirit_jar": "罐中的清洁工魔灵有一独特的性质。它们会尝试捡起周围的物品，并放入与收容罐相邻的容器。自动化也因此变得非常简单了！",
+  "ars_ocultas.page.transmutation": "嬗变",
+  "ars_ocultas.page1.transmutation": "你可以将多余的银变成金，反过来也可以！",
+  "ars_ocultas.section.ars_ocultas": "Ars Ocultas"
 }
